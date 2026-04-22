@@ -1,0 +1,24 @@
+{
+  "minLevelIfTriggered": 3,
+  "triggers": [
+    {
+      "id": "external_or_operational_use",
+      "condition": { "use": ["U4", "U5"] }
+    },
+    {
+      "id": "calculation_or_analysis",
+      "condition": { "task": ["T9"] }
+    },
+    {
+      "id": "policy_interpretation",
+      "condition": { "task": ["T10"] }
+    },
+    {
+      "id": "no_source_medium_or_high_impact",
+      "condition": {
+        "evidence": ["E3"],
+        "impact": ["I2", "I3"]
+      }
+    }
+  ]
+}

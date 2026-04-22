@@ -1,0 +1,62 @@
+{
+  "0": {
+    "T1": { "explanationTemplate": "Personal use with low risk; a quick sense-check is enough.", "checklist": ["Read for obvious mismatches or odd labels."] },
+    "T2": { "explanationTemplate": "Personal use with low risk; no formal verification is needed.", "checklist": ["Skim for anything obviously omitted or distorted."] },
+    "T3": { "explanationTemplate": "Personal drafting with low risk; use after a quick read-through.", "checklist": ["Read once for tone, clarity, and obvious mistakes."] },
+    "T4": { "explanationTemplate": "Low-risk personal code use still benefits from a quick check.", "checklist": ["Read the code and confirm it broadly matches your intent."] },
+    "T5": { "explanationTemplate": "Personal translation with low risk needs only a light review.", "checklist": ["Check that the meaning roughly matches what you intended."] },
+    "T6": { "explanationTemplate": "Low-risk transformation can be used after a quick visual check.", "checklist": ["Check the output format looks correct."] },
+    "T7": { "explanationTemplate": "Exploratory use is fine here, but do not treat it as established fact.", "checklist": ["Use as a draft for thinking, not as verified truth."] },
+    "T8": { "explanationTemplate": "Low-risk evaluation can be used informally with a quick check.", "checklist": ["Check the output does not obviously conflict with your judgment."] },
+    "T9": { "explanationTemplate": "Even for personal use, numerical work deserves a brief check.", "checklist": ["Check the inputs and sense-check the result."] },
+    "T10": { "explanationTemplate": "Policy interpretation is rarely safe to trust without review.", "checklist": ["Treat this as provisional until checked against the rule text."] }
+  },
+  "1": {
+    "T1": { "explanationTemplate": "Internal draft use with low stakes calls for a quick review.", "checklist": ["Check a few sample labels manually.", "Flag anything ambiguous before sharing."] },
+    "T2": { "explanationTemplate": "Internal use calls for a light source check before sharing.", "checklist": ["Check the main points against the source.", "Look for missing context or distortions."] },
+    "T3": { "explanationTemplate": "Internal drafting should be reviewed before circulation.", "checklist": ["Read for clarity and tone.", "Remove any unsupported claims before sharing."] },
+    "T4": { "explanationTemplate": "Internal code drafts need a brief review before use.", "checklist": ["Read the code for obvious errors.", "Check it matches the intended task."] },
+    "T5": { "explanationTemplate": "Translation for internal use needs a quick meaning check.", "checklist": ["Check key terms and intended tone.", "Confirm no major meaning has shifted."] },
+    "T6": { "explanationTemplate": "Transformation for internal use should be spot-checked.", "checklist": ["Check a few rows or records.", "Confirm the new format is correct."] },
+    "T7": { "explanationTemplate": "Internal planning or research needs a light plausibility review.", "checklist": ["Check the main claims look credible.", "Mark anything uncertain or speculative."] },
+    "T8": { "explanationTemplate": "Internal evaluation should be checked for obvious bias or inconsistency.", "checklist": ["Review a few outputs manually.", "Check whether the scoring logic seems consistent."] },
+    "T9": { "explanationTemplate": "Numerical outputs should get a quick check before internal use.", "checklist": ["Check the inputs.", "Sense-check the magnitude of the result."] },
+    "T10": { "explanationTemplate": "Internal policy interpretations still need checking against the actual rule.", "checklist": ["Read the relevant rule text.", "Check the output matches the stated criteria."] }
+  },
+  "2": {
+    "T1": { "explanationTemplate": "This supports decisions, so verify labels against clear criteria.", "checklist": ["Check a sample against the classification rules.", "Review borderline cases.", "Mark uncertain items for manual review."] },
+    "T2": { "explanationTemplate": "This output informs decisions and should be checked against source material.", "checklist": ["Read the source and confirm key points.", "Check nothing important was omitted.", "Flag any ambiguity before use."] },
+    "T3": { "explanationTemplate": "Use in decisions requires checking the draft for unsupported content.", "checklist": ["Check factual claims against source material.", "Remove unsupported assertions.", "Review whether the wording could mislead."] },
+    "T4": { "explanationTemplate": "Code that supports decisions should be tested before reliance.", "checklist": ["Run or validate the code if possible.", "Check key logic branches.", "Confirm outputs match expectations."] },
+    "T5": { "explanationTemplate": "Translation used in decisions needs a closer meaning check.", "checklist": ["Check critical terms carefully.", "Confirm nuances were preserved.", "Review any legally or operationally important wording."] },
+    "T6": { "explanationTemplate": "Transformation that informs decisions should be checked against the source format.", "checklist": ["Check the transformed output against the original.", "Spot-check key fields.", "Confirm nothing was lost or altered."] },
+    "T7": { "explanationTemplate": "Research or planning used in decisions needs grounded verification.", "checklist": ["Verify the key claims with trusted sources.", "Check whether alternatives were overlooked.", "Flag assumptions that need human review."] },
+    "T8": { "explanationTemplate": "Evaluation used in decisions needs consistency and sample checking.", "checklist": ["Review examples across the score range.", "Check the scoring is applied consistently.", "Escalate uncertain cases for manual review."] },
+    "T9": { "explanationTemplate": "Decision-relevant numerical analysis should be independently checked.", "checklist": ["Recheck the inputs and units.", "Redo the core calculation independently.", "Confirm the result is plausible before use."] },
+    "T10": { "explanationTemplate": "Rule or policy application used in decisions requires direct checking.", "checklist": ["Compare the output to the actual rule text.", "Check definitions and exceptions.", "Have unclear cases reviewed by a human."] }
+  },
+  "3": {
+    "T1": { "explanationTemplate": "This is consequential enough to require independent review.", "checklist": ["Check outputs against the classification criteria.", "Review edge and borderline cases.", "Have another person review before use.", "Do not rely on uncertain labels without escalation."] },
+    "T2": { "explanationTemplate": "Externally used or consequential summaries need independent checking.", "checklist": ["Check all key points against the source.", "Confirm nothing material was omitted or distorted.", "Have someone else review before use.", "Do not share if any ambiguity remains."] },
+    "T3": { "explanationTemplate": "External or operational drafting needs stronger review before use.", "checklist": ["Check all factual claims.", "Review tone and audience risk.", "Have another person approve before sharing.", "Remove anything you cannot verify."] },
+    "T4": { "explanationTemplate": "Consequential code output requires independent testing or review.", "checklist": ["Run the code or validate syntax.", "Test the main path and one edge case.", "Have someone else review the logic.", "Do not use it untested."] },
+    "T5": { "explanationTemplate": "Translation with external or operational use needs independent review.", "checklist": ["Check critical wording carefully.", "Confirm meaning and register are preserved.", "Have another person review important passages.", "Escalate if any term is ambiguous."] },
+    "T6": { "explanationTemplate": "Operational transformations should be checked before use.", "checklist": ["Compare output against original records.", "Spot-check multiple examples.", "Have someone else review if the output drives action.", "Do not proceed if fields appear altered."] },
+    "T7": { "explanationTemplate": "Consequential research or planning needs source-based validation and review.", "checklist": ["Verify key claims with trusted sources.", "Check for missed assumptions or alternatives.", "Have someone else review before acting on it.", "Do not treat unverified claims as facts."] },
+    "T8": { "explanationTemplate": "Consequential scoring or evaluation needs independent review.", "checklist": ["Review examples manually.", "Check consistency across cases.", "Have another reviewer approve use.", "Escalate outputs affecting people or outcomes."] },
+    "T9": { "explanationTemplate": "Numerical outputs at this level require independent review before use.", "checklist": ["Redo the main calculation independently.", "Check units, assumptions, and inputs.", "Have another person review the result.", "Do not act until discrepancies are resolved."] },
+    "T10": { "explanationTemplate": "Policy interpretation at this level requires direct checking and review.", "checklist": ["Compare against the actual rule text.", "Check definitions, exceptions, and thresholds.", "Have a human reviewer approve the interpretation.", "Do not act on unresolved ambiguity."] }
+  },
+  "4": {
+    "T1": { "explanationTemplate": "This use case needs formal controls, not just ad hoc review.", "checklist": ["Check against documented criteria.", "Review a sample and edge cases.", "Require accountable sign-off.", "Document any uncertainty or exceptions."] },
+    "T2": { "explanationTemplate": "High-stakes summaries need formal validation before use.", "checklist": ["Check all material points against the source.", "Document omissions or ambiguities.", "Require approval from an accountable reviewer.", "Do not use without traceable validation."] },
+    "T3": { "explanationTemplate": "High-stakes drafting requires formal review and approval.", "checklist": ["Verify all factual claims.", "Review wording for legal or reputational risk.", "Require formal sign-off.", "Keep a record of what was checked."] },
+    "T4": { "explanationTemplate": "High-stakes code use requires formal validation and approval.", "checklist": ["Test the code before use.", "Review logic and failure modes.", "Require accountable approval.", "Keep a record of checks performed."] },
+    "T5": { "explanationTemplate": "High-stakes translation requires formal review.", "checklist": ["Check critical wording carefully.", "Review sensitive or regulated terms.", "Require approval from an accountable reviewer.", "Document any unresolved nuance."] },
+    "T6": { "explanationTemplate": "High-stakes data transformations need formal checking.", "checklist": ["Validate transformed output against source data.", "Check critical fields systematically.", "Require accountable sign-off.", "Keep a record of the checks."] },
+    "T7": { "explanationTemplate": "High-stakes research or planning needs formal validation.", "checklist": ["Verify key claims with trusted sources.", "Document assumptions and limitations.", "Require formal review before acting.", "Do not use unsupported claims."] },
+    "T8": { "explanationTemplate": "High-stakes evaluation needs formal controls and review.", "checklist": ["Check outputs against defined criteria.", "Review representative cases and edge cases.", "Require accountable approval.", "Document any exceptions or uncertainty."] },
+    "T9": { "explanationTemplate": "High-stakes numerical analysis requires formal checking and sign-off.", "checklist": ["Redo the analysis independently.", "Check inputs, units, and assumptions.", "Require accountable review.", "Document the validation performed."] },
+    "T10": { "explanationTemplate": "High-stakes policy interpretation needs formal human review.", "checklist": ["Compare against the source rule text.", "Check definitions, exceptions, and thresholds.", "Require accountable approval.", "Document the basis for the interpretation."] }
+  }
+}

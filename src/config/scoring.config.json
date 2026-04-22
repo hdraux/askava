@@ -1,0 +1,16 @@
+{
+  "baseScores": {
+    "U1": 0,
+    "U2": 1,
+    "U3": 2,
+    "U4": 3,
+    "U5": 4
+  },
+  "highRiskTasks": ["T1", "T4", "T9", "T10"],
+  "adjustments": {
+    "impactHigh": 1,
+    "highRiskTask": 1,
+    "noEvidence": 1
+  },
+  "maxLevel": 4
+}
