@@ -294,7 +294,7 @@ export default function RevealWizard() {
               {applicablePrompts.length > 0 && (
                 <div className="reveal-wizard__section">
                   <div className="reveal-wizard__section-label">
-                    Pick one prompt per step
+                    Run these prompts
                   </div>
                   <p className="reveal-wizard__prompts-hint">
                     You don't need to run all of them: one per step is enough.
@@ -351,8 +351,8 @@ export default function RevealWizard() {
                     })}
                   </ul>
                   <p className="reveal-wizard__prompts-note">
-                    Pick one prompt from each step and run it in a new conversation. Include your AI output
-                    in the message when you send each prompt.
+                    Run each prompt in a new conversation. Include your AI output
+                    in the message when you send it.
                   </p>
                 </div>
               )}
