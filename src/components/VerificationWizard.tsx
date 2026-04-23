@@ -51,13 +51,16 @@ export default function VerificationWizard({ inputs, onInputsChange, onSubmit }:
   };
 
   return (
-    <section className="card wizard" aria-labelledby="wizard-heading">
+    <section className="card wizard" aria-labelledby="wizard-heading" aria-describedby="wizard-helper wizard-status">
       <Stepper totalSteps={TOTAL_STEPS} currentStep={currentStep} />
       <h2 id="wizard-heading" className="wizard__title" tabIndex={-1} ref={headingRef}>
         {stepMeta.title}
       </h2>
-      <p className="wizard__helper">{stepMeta.helper}</p>
+      <p id="wizard-helper" className="wizard__helper">{stepMeta.helper}</p>
       {renderStep()}
+      <p id="wizard-status" className="wizard__status" aria-live="polite">
+        {canProceed ? "Selection captured. You can continue." : "Choose one option to continue."}
+      </p>
 
       <WizardFooter
         isFirstStep={isFirstStep}

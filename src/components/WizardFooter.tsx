@@ -18,7 +18,7 @@ export default function WizardFooter({
   return (
     <div className="wizard-footer">
       <button type="button" className="button-secondary" onClick={onBack} disabled={isFirstStep}>
-        Previous step
+        Back
       </button>
       {isLastStep ? (
         <button type="button" onClick={onEvaluate} disabled={!canProceed}>
@@ -26,7 +26,7 @@ export default function WizardFooter({
         </button>
       ) : (
         <button type="button" onClick={onNext} disabled={!canProceed}>
-          Next step
+          Continue
         </button>
       )}
     </div>
