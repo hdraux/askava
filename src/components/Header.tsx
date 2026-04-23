@@ -1,4 +1,4 @@
-import logoUrl from "../../../design/mockups/logo.png";
+import logoUrl from "../assets/logo.png";
 
 function LightningIcon() {
   return (
