@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Form from "./components/Form";
-import Result from "./components/Result";
-import DebugPanel from "./components/DebugPanel";
-import InputSummary from "./components/InputSummary";
+import AppShell from "./components/AppShell";
+import Header from "./components/Header";
+import VerificationWizard from "./components/VerificationWizard";
+import ResultScreen from "./components/ResultScreen";
 import { evaluate } from "./lib/evaluate";
 import {
   escalationConfigTyped,
@@ -17,30 +17,38 @@ export default function App() {
   const [result, setResult] = useState<EvaluationResult | null>(null);
 
   return (
-    <main className="app-shell">
-      <header className="hero">
-        <h1>LLM Output Verification Advisor</h1>
-        <p>
-          Get a proportionate verification recommendation based on the task, use,
-          impact, and evidence available.
-        </p>
-      </header>
+    <AppShell>
+      <Header />
 
-      <Form
-        onInputsChange={setInputs}
-        onSubmit={(completeInputs) => {
-          setInputs(completeInputs);
-          setResult(
-            evaluate(
-              completeInputs,
-              scoringConfigTyped,
-              escalationConfigTyped,
-              recommendationMapTyped,
-              debug
-            )
-          );
-        }}
-      />
+      {result ? (
+        <ResultScreen
+          inputs={inputs as Inputs}
+          result={result}
+          onEdit={() => setResult(null)}
+        />
+      ) : (
+        <VerificationWizard
+          inputs={inputs}
+          onInputsChange={(nextInputs) => {
+            setInputs(nextInputs);
+            if (result) {
+              setResult(null);
+            }
+          }}
+          onSubmit={(completeInputs) => {
+            setInputs(completeInputs);
+            setResult(
+              evaluate(
+                completeInputs,
+                scoringConfigTyped,
+                escalationConfigTyped,
+                recommendationMapTyped,
+                debug
+              )
+            );
+          }}
+        />
+      )}
 
       <label className="debug-toggle">
         <input
@@ -51,14 +59,6 @@ export default function App() {
         Enable debug mode
       </label>
 
-      <InputSummary inputs={inputs} />
-
-      {result ? (
-        <>
-          <Result data={result.recommendation} />
-          <DebugPanel data={result.debug} />
-        </>
-      ) : null}
-    </main>
+    </AppShell>
   );
 }
