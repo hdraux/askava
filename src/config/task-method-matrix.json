@@ -1,0 +1,443 @@
+{
+  "version": "1.0",
+  "notes": {
+    "selection_logic": [
+      "Base selection is determined by task and verification level.",
+      "Level controls depth; task controls method choice.",
+      "Overrides are applied after base selection.",
+      "Users should see one prompt per step in the UI.",
+      "At level 4, prompt-based checks do not replace formal human approval."
+    ],
+    "step_order": ["Step 1", "Step 2", "Step 3"],
+    "prompt_ids": [
+      "self-critique",
+      "confidence",
+      "assumption",
+      "variation",
+      "chain",
+      "known-answer",
+      "source",
+      "rule",
+      "computational"
+    ]
+  },
+  "baseMatrix": {
+    "content_generation": {
+      "level0": [],
+      "level1": {
+        "step1": ["self-critique"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": ["source", "known-answer"]
+      },
+      "level4": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": ["source", "known-answer"]
+      }
+    },
+    "summarisation": {
+      "level0": [],
+      "level1": {
+        "step1": ["self-critique"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["self-critique"],
+        "step2": ["variation"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["self-critique"],
+        "step2": ["variation"],
+        "step3": ["source"]
+      },
+      "level4": {
+        "step1": ["self-critique"],
+        "step2": ["variation"],
+        "step3": ["source"]
+      }
+    },
+    "information_lookup": {
+      "level0": [],
+      "level1": {
+        "step1": ["confidence"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["confidence"],
+        "step2": ["variation"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["confidence"],
+        "step2": ["variation", "assumption"],
+        "step3": ["known-answer", "source"]
+      },
+      "level4": {
+        "step1": ["confidence"],
+        "step2": ["variation", "assumption"],
+        "step3": ["known-answer", "source"]
+      }
+    },
+    "data_analysis": {
+      "level0": [],
+      "level1": {
+        "step1": ["confidence"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["confidence"],
+        "step2": ["assumption"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["confidence"],
+        "step2": ["assumption"],
+        "step3": ["computational", "chain"]
+      },
+      "level4": {
+        "step1": ["confidence"],
+        "step2": ["assumption"],
+        "step3": ["computational", "chain"]
+      }
+    },
+    "policy_interpretation": {
+      "level0": [],
+      "level1": {
+        "step1": ["confidence"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["confidence"],
+        "step2": ["assumption"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["confidence"],
+        "step2": ["assumption"],
+        "step3": ["rule", "source"]
+      },
+      "level4": {
+        "step1": ["confidence"],
+        "step2": ["assumption"],
+        "step3": ["rule", "source"]
+      }
+    },
+    "translation": {
+      "level0": [],
+      "level1": {
+        "step1": ["self-critique"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["self-critique"],
+        "step2": ["variation"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["self-critique"],
+        "step2": ["variation"],
+        "step3": ["source", "known-answer"]
+      },
+      "level4": {
+        "step1": ["self-critique"],
+        "step2": ["variation"],
+        "step3": ["source", "known-answer"]
+      }
+    },
+    "coding_assistance": {
+      "level0": [],
+      "level1": {
+        "step1": ["self-critique"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": ["rule", "computational"]
+      },
+      "level4": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": ["rule", "computational"]
+      }
+    },
+    "other": {
+      "level0": [],
+      "level1": {
+        "step1": ["self-critique"],
+        "step2": [],
+        "step3": []
+      },
+      "level2": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": []
+      },
+      "level3": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": ["known-answer", "source"]
+      },
+      "level4": {
+        "step1": ["self-critique"],
+        "step2": ["assumption"],
+        "step3": ["known-answer", "source"]
+      }
+    }
+  },
+  "overrides": {
+    "evidence": {
+      "clear_source": {
+        "prioritise": {
+          "summarisation": ["source"],
+          "content_generation": ["source"],
+          "information_lookup": ["source"],
+          "policy_interpretation": ["source"],
+          "translation": ["source"]
+        },
+        "rules": [
+          {
+            "when": {
+              "task": "summarisation",
+              "level_gte": 2
+            },
+            "forceInclude": {
+              "step3": ["source"]
+            }
+          },
+          {
+            "when": {
+              "task": "policy_interpretation",
+              "level_gte": 3
+            },
+            "forceInclude": {
+              "step3": ["source"]
+            }
+          }
+        ]
+      },
+      "partial_source": {
+        "prioritise": {
+          "summarisation": ["source"],
+          "content_generation": ["source"],
+          "information_lookup": ["source"],
+          "policy_interpretation": ["source"]
+        }
+      },
+      "no_source": {
+        "remove": ["source"],
+        "prioritise": {
+          "content_generation": ["self-critique", "assumption", "known-answer"],
+          "summarisation": ["self-critique", "variation"],
+          "information_lookup": ["confidence", "known-answer", "variation"],
+          "data_analysis": ["confidence", "assumption", "computational"],
+          "policy_interpretation": ["confidence", "assumption", "rule"],
+          "translation": ["self-critique", "variation", "known-answer"],
+          "coding_assistance": ["self-critique", "assumption", "rule"],
+          "other": ["self-critique", "assumption", "known-answer"]
+        },
+        "rules": [
+          {
+            "when": {
+              "task_in": [
+                "content_generation",
+                "translation",
+                "other"
+              ]
+            },
+            "note": "Do not escalate just because no source exists if the task is generative by design."
+          }
+        ]
+      }
+    },
+    "impact": {
+      "high": {
+        "rules": [
+          {
+            "when": {
+              "level_gte": 2
+            },
+            "requireStep3": true
+          },
+          {
+            "when": {
+              "task": "data_analysis",
+              "level_gte": 2
+            },
+            "forceInclude": {
+              "step3": ["computational"]
+            }
+          },
+          {
+            "when": {
+              "task": "policy_interpretation",
+              "level_gte": 2
+            },
+            "forceInclude": {
+              "step3": ["rule"]
+            }
+          },
+          {
+            "when": {
+              "task": "summarisation",
+              "evidence_in": ["clear_source", "partial_source"],
+              "level_gte": 2
+            },
+            "forceInclude": {
+              "step3": ["source"]
+            }
+          }
+        ]
+      }
+    },
+    "intended_use": {
+      "external_or_operational": {
+        "rules": [
+          {
+            "when": {
+              "level_gte": 3
+            },
+            "requireStep3": true
+          }
+        ]
+      },
+      "regulatory_or_high_stakes": {
+        "rules": [
+          {
+            "when": {},
+            "setMinimumLevel": 4
+          },
+          {
+            "when": {},
+            "requireHumanReview": true
+          },
+          {
+            "when": {},
+            "note": "Prompt results are advisory only at this level."
+          }
+        ]
+      }
+    }
+  },
+  "selectionPolicy": {
+    "uiMode": "one_per_step",
+    "rules": [
+      "For each populated step, show the first prompt as the default recommendation.",
+      "If multiple prompts are listed for a step, treat later entries as alternates.",
+      "If a forced prompt is added by override, move it to the front of that step.",
+      "At level 4, display formal human review language regardless of prompt selection."
+    ]
+  },
+  "defaultPromptChoice": {
+    "content_generation": {
+      "step1": "self-critique",
+      "step2": "assumption",
+      "step3": {
+        "clear_source": "source",
+        "partial_source": "source",
+        "no_source": "known-answer"
+      }
+    },
+    "summarisation": {
+      "step1": "self-critique",
+      "step2": "variation",
+      "step3": {
+        "clear_source": "source",
+        "partial_source": "source",
+        "no_source": "variation"
+      }
+    },
+    "information_lookup": {
+      "step1": "confidence",
+      "step2": "variation",
+      "step3": {
+        "clear_source": "source",
+        "partial_source": "source",
+        "no_source": "known-answer"
+      }
+    },
+    "data_analysis": {
+      "step1": "confidence",
+      "step2": "assumption",
+      "step3": {
+        "clear_source": "computational",
+        "partial_source": "computational",
+        "no_source": "computational"
+      }
+    },
+    "policy_interpretation": {
+      "step1": "confidence",
+      "step2": "assumption",
+      "step3": {
+        "clear_source": "rule",
+        "partial_source": "rule",
+        "no_source": "rule"
+      }
+    },
+    "translation": {
+      "step1": "self-critique",
+      "step2": "variation",
+      "step3": {
+        "clear_source": "source",
+        "partial_source": "source",
+        "no_source": "known-answer"
+      }
+    },
+    "coding_assistance": {
+      "step1": "self-critique",
+      "step2": "assumption",
+      "step3": {
+        "clear_source": "rule",
+        "partial_source": "rule",
+        "no_source": "rule"
+      }
+    },
+    "other": {
+      "step1": "self-critique",
+      "step2": "assumption",
+      "step3": {
+        "clear_source": "source",
+        "partial_source": "source",
+        "no_source": "known-answer"
+      }
+    }
+  },
+  "copyGuardrails": {
+    "doNotClaim": [
+      "that self-critique reliably exposes hidden errors",
+      "that chain-of-thought reveals the model's true internal reasoning",
+      "that known-answer tests calibrate overall reliability strongly",
+      "that source verification guarantees detection of omissions or distortions",
+      "that computational checks reliably redo every calculation correctly"
+    ],
+    "preferredFraming": [
+      "can help identify",
+      "can expose",
+      "provides a limited signal",
+      "supports inspection",
+      "helps compare against"
+    ]
+  }
+}

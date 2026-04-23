@@ -1,36 +1,132 @@
-export default function Methodology() {
+function PrincipleIcon({ variant }: { variant: "scale" | "task" | "action" }) {
+  if (variant === "scale") {
+    return (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+        <path d="M8 2L3 4v4c0 3 2.5 5.5 5 6.5C11 13.5 13 11 13 8V4L8 2z" />
+      </svg>
+    );
+  }
+  if (variant === "task") {
+    return (
+      <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+        <circle cx="8" cy="8" r="6" />
+        <path d="M8 2c-2 2-2 8 0 12M8 2c2 2 2 8 0 12M2 8h12" />
+      </svg>
+    );
+  }
+  return (
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
+      <rect x="2" y="3" width="12" height="10" rx="1.5" />
+      <line x1="5" y1="7" x2="11" y2="7" />
+      <line x1="5" y1="9.5" x2="8.5" y2="9.5" />
+    </svg>
+  );
+}
+
+const SCORE_TASK_ROWS: [string, string][] = [
+  ["Content generation", "+0"],
+  ["Summarisation", "+0"],
+  ["Information lookup", "+0"],
+  ["Translation", "+0"],
+  ["Classification / labelling", "+1"],
+  ["Coding assistance", "+1"],
+  ["Data analysis", "+1"],
+  ["Policy interpretation", "+2"],
+];
+
+const SCORE_USE_ROWS: [string, string][] = [
+  ["Personal only", "+0"],
+  ["Internal draft", "+1"],
+  ["Decision support", "+2"],
+  ["External / operational", "+3"],
+  ["Regulatory / high-stakes", "+4"],
+];
+
+const SCORE_IMPACT_ROWS: [string, string][] = [
+  ["Low", "+0"],
+  ["Medium", "+1"],
+  ["High", "+2"],
+];
+
+const SCORE_EVIDENCE_ROWS: [string, string][] = [
+  ["Clear source", "+0"],
+  ["Partial source", "+1"],
+  ["No source", "+2"],
+];
+
+const TASK_METHOD_ROWS: [string, string, string, string][] = [
+  ["Content generation", "Self-critique", "Assumption audit", "Source verification or known-answer test"],
+  ["Summarisation", "Self-critique", "Prompt variation", "Source verification"],
+  ["Information lookup", "Confidence elicitation", "Prompt variation", "Known-answer test or source verification"],
+  ["Data analysis", "Confidence elicitation", "Assumption audit", "Computational check"],
+  ["Policy interpretation", "Confidence elicitation", "Assumption audit", "Rule-based check"],
+  ["Translation", "Self-critique", "Prompt variation", "Source verification or known-answer test"],
+  ["Coding assistance", "Self-critique", "Assumption audit", "Rule-based check"],
+  ["Classification / labelling", "Self-critique", "Assumption audit", "Known-answer test or source verification"],
+];
+
+const LEVEL_TABLE_ROWS: [string, string, string, string][] = [
+  ["0", "Use freely", "No verification needed. Low-stakes, personal, generative output with no meaningful consequence if wrong.", "0"],
+  ["1", "Quick check", "One prompt from Step 1, chosen for your task type. Can help catch obvious errors before they travel further.", "1–2"],
+  ["2", "Grounded verification", "Two prompts: Step 1 and Step 2. Helps check both the surface output and underlying assumptions.", "3–5"],
+  ["3", "Independent review", "Three prompts across all steps. A task-specific method is prioritised at Step 3.", "6–7"],
+  ["4", "Formal control", "Full prompt suite plus mandatory human sign-off. Prompts are advisory; human judgement is the control.", "8+"],
+];
+
+function ScoreTable({ title, rows }: { title: string; rows: [string, string][] }) {
+  return (
+    <>
+      <h3 className="methodology__subheading methodology__subheading--tight">{title}</h3>
+      <div className="methodology__table-wrap">
+        <table className="methodology__table">
+          <thead>
+            <tr>
+              <th scope="col">{title === "Task type" ? "Task" : title === "Intended use" ? "Use" : title === "Impact if wrong" ? "Impact" : "Evidence"}</th>
+              <th scope="col">Points</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map(([label, pts]) => (
+              <tr key={label}>
+                <td>{label}</td>
+                <td>{pts}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
+
+type MethodologyProps = {
+  onOpenOther?: () => void;
+};
+
+export default function Methodology({ onOpenOther }: MethodologyProps) {
   return (
     <article className="methodology">
+      <h1 className="methodology__title">How AVA works</h1>
 
-      {/* TL;DR */}
-      <div className="methodology__tldr" aria-label="Summary">
-        <p className="methodology__tldr-label">In short</p>
-        <ul className="methodology__tldr-list">
-          <li><strong>High-risk output</strong> — deeper checks, switch model first, formal sign-off if needed</li>
-          <li><strong>Low-risk output</strong> — quick self-critique or nothing at all</li>
-          <li><strong>Best first step, always</strong> — ask a different AI before running any prompts</li>
-        </ul>
-      </div>
-
-      <h2 className="methodology__heading">
-        Verification proportional to use and risk — not uniform
-      </h2>
+      <h2 className="methodology__heading">Verification proportional to use and risk; not uniform</h2>
       <p className="methodology__body">
-        Most teams either over-verify low-stakes drafts or under-verify high-stakes outputs. AVA makes the right level of scrutiny obvious — quickly, without requiring expertise in AI safety or risk management.
+        Most teams either over-verify low-stakes drafts or under-verify high-stakes outputs. AVA makes the right level of scrutiny obvious, quickly, without requiring expertise in AI safety or risk management.
       </p>
 
-      <h3 className="methodology__subheading">Why we built this</h3>
+      <hr className="methodology__rule" aria-hidden="true" />
+
+      <h2 className="methodology__heading">Why we built this</h2>
       <p className="methodology__body">
-        AI tools are now a normal part of how people work. But the question of when to trust an output — and how to check it — is left entirely to the individual. The same colleague who carefully fact-checks a client report will often paste an AI summary directly into a meeting without a second thought, not because they're careless, but because no one has given them a simple framework for when caution is actually warranted.
+        AI tools are now a normal part of how people work. But the question of when to trust an output, and how to check it, is left entirely to the individual. The same colleague who carefully fact-checks a client report will often paste an AI summary directly into a meeting without a second thought, not because they are careless, but because no one has given them a simple framework for when caution is actually warranted.
       </p>
 
-      <h3 className="methodology__subheading">Three principles</h3>
+      <hr className="methodology__rule" aria-hidden="true" />
+
+      <h2 className="methodology__heading">Three principles</h2>
 
       <div className="methodology__principle">
         <div className="methodology__principle-icon" aria-hidden="true">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
-            <path d="M8 2L3 4v4c0 3 2.5 5.5 5 6.5C11 13.5 13 11 13 8V4L8 2z" />
-          </svg>
+          <PrincipleIcon variant="scale" />
         </div>
         <div>
           <p className="methodology__principle-title">Proportionality over completeness</p>
@@ -42,123 +138,125 @@ export default function Methodology() {
 
       <div className="methodology__principle">
         <div className="methodology__principle-icon" aria-hidden="true">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
-            <circle cx="8" cy="8" r="6" />
-            <path d="M8 2c-2 2-2 8 0 12M8 2c2 2 2 8 0 12M2 8h12" />
-          </svg>
+          <PrincipleIcon variant="task" />
         </div>
         <div>
-          <p className="methodology__principle-title">Switch model first</p>
+          <p className="methodology__principle-title">Task shapes method</p>
           <p className="methodology__principle-desc">
-            The most reliable way to catch an AI error is to ask a different AI. Different models have different training, different biases, and different blind spots. Disagreement between them is a meaningful signal. This is always the first recommended action for levels 3 and 4.
+            Not all verification prompts are equally useful for all tasks. Rechecking a calculation calls for a different probe than reviewing a policy interpretation or a translated document. AVA selects the most relevant prompts for your task type, not just your risk level.
           </p>
         </div>
       </div>
 
       <div className="methodology__principle">
         <div className="methodology__principle-icon" aria-hidden="true">
-          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" width="16" height="16">
-            <rect x="2" y="3" width="12" height="10" rx="1.5" />
-            <line x1="5" y1="7" x2="11" y2="7" />
-            <line x1="5" y1="9.5" x2="8.5" y2="9.5" />
-          </svg>
+          <PrincipleIcon variant="action" />
         </div>
         <div>
           <p className="methodology__principle-title">Actionable over educational</p>
           <p className="methodology__principle-desc">
-            AVA gives you the exact prompts to run, in the right order, ready to copy. You don't need to read this page to use AVA effectively.
+            AVA gives you the prompts to run, ready to copy. You do not need to read this page to use AVA effectively.
           </p>
         </div>
       </div>
 
-      <h3 className="methodology__subheading">How the score is calculated</h3>
+      <hr className="methodology__rule" aria-hidden="true" />
+
+      <h2 className="methodology__heading">How the score is calculated</h2>
       <p className="methodology__body">
         AVA asks four questions. Each answer contributes points to a risk score, which maps to a verification level.
       </p>
 
-      <div className="methodology__factor-list">
-        {[
-          {
-            name: "Task type",
-            q: "What did the AI do?",
-            options: [
-              { label: "Drafting / writing", pts: "+0" },
-              { label: "Summarisation", pts: "+0" },
-              { label: "Most tasks", pts: "+1" },
-              { label: "Calculation / analysis", pts: "+2" },
-              { label: "Policy interpretation", pts: "+2" },
-            ],
-          },
-          {
-            name: "Intended use",
-            q: "Who will rely on this?",
-            options: [
-              { label: "Personal only", pts: "+0" },
-              { label: "Internal draft", pts: "+1" },
-              { label: "Decision support", pts: "+2" },
-              { label: "External / operational", pts: "+3" },
-              { label: "Regulatory / high-stakes", pts: "+4" },
-            ],
-          },
-          {
-            name: "Impact if wrong",
-            q: "What's the downside?",
-            options: [
-              { label: "Low", pts: "+0" },
-              { label: "Medium", pts: "+0" },
-              { label: "High", pts: "+1" },
-            ],
-          },
-          {
-            name: "Evidence availability",
-            q: "Can you check it against a source?",
-            options: [
-              { label: "Clear source", pts: "+0" },
-              { label: "Partial source", pts: "+1" },
-              { label: "No source", pts: "+2" },
-            ],
-          },
-        ].map((factor) => (
-          <div key={factor.name} className="methodology__factor">
-            <div className="methodology__factor-header">
-              <span className="methodology__factor-name">{factor.name}</span>
-              <span className="methodology__factor-q">{factor.q}</span>
-            </div>
-            <div className="methodology__factor-options">
-              {factor.options.map((opt) => (
-                <span key={opt.label} className="methodology__factor-opt">
-                  {opt.label} <span className="methodology__factor-pts">{opt.pts}</span>
-                </span>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <ScoreTable title="Task type" rows={SCORE_TASK_ROWS} />
+      <ScoreTable title="Intended use" rows={SCORE_USE_ROWS} />
+      <ScoreTable title="Impact if wrong" rows={SCORE_IMPACT_ROWS} />
+      <ScoreTable title="Evidence availability" rows={SCORE_EVIDENCE_ROWS} />
 
-      <h3 className="methodology__subheading">Verification levels</h3>
-      <div className="methodology__levels">
-        {[
-          { level: 0, name: "Use freely", range: "Score 0", desc: "No verification needed. Low-stakes, personal, generative output with no meaningful consequence if wrong.", color: "gray" },
-          { level: 1, name: "Quick check", range: "Score 1–2", desc: "One prompt — confidence elicitation or self-critique. Takes two minutes. Catches obvious errors before they travel further.", color: "green" },
-          { level: 2, name: "Grounded verification", range: "Score 3–4", desc: "Two prompts — self-critique plus assumption audit. Checks both the reasoning and the hidden assumptions.", color: "teal" },
-          { level: 3, name: "Independent review", range: "Score 5–6", desc: "Switch model first, then run multiple prompts including chain of thought and source verification.", color: "amber" },
-          { level: 4, name: "Formal control", range: "Score 7+", desc: "Full verification suite plus human sign-off. A named person must approve before the output is shared or acted on.", color: "red" },
-        ].map((l) => (
-          <div key={l.level} className={`methodology__level methodology__level--${l.color}`}>
-            <div className="methodology__level-badge" aria-label={`Level ${l.level}`}>{l.level}</div>
-            <div className="methodology__level-body">
-              <p className="methodology__level-name">{l.name}</p>
-              <p className="methodology__level-desc">{l.desc}</p>
-            </div>
-            <span className="methodology__level-range">{l.range}</span>
-          </div>
-        ))}
-      </div>
+      <hr className="methodology__rule" aria-hidden="true" />
 
-      <p className="methodology__disclaimer">
-        AVA is a deterministic decision aid — it runs entirely in your browser with no backend, no model calls, and no data storage. The recommendations are based on a fixed scoring table, not an AI judgement. AVA tells you how to verify; it does not verify for you. Human judgement remains essential at every level.
+      <h2 className="methodology__heading">How the method is chosen</h2>
+      <p className="methodology__body">
+        Your verification level sets the depth. Your task type determines which prompts are most relevant at that depth.
+      </p>
+      <p className="methodology__body">
+        For each level, AVA selects one prompt per step from a fixed task-method table. At Step 1, the prompt is chosen to probe common failure modes for your task. At Step 2, a complementary probe is added. At Step 3, task determines the primary method; evidence determines which variant is used when alternatives exist.
+      </p>
+      <p className="methodology__body">
+        Evidence availability shapes both the score and the method selection. The no-source adjustment (+2) raises your score. It also removes source-based prompts from the selection, replacing them with alternatives that work without one. These are two separate effects of the same input. Where a source would normally be expected, its absence is a stronger signal that method selection should avoid source-dependent prompts.
+      </p>
+      <p className="methodology__body">
+        For tasks where prompt-based checks have inherent limits — code that needs running, calculations that need independent tools, policies that need legal review — treat the prompts as a starting point, not a substitute.
       </p>
 
+      <h3 className="methodology__subheading methodology__subheading--tight">Task-method table</h3>
+      <div className="methodology__table-wrap">
+        <table className="methodology__table methodology__table--wide">
+          <thead>
+            <tr>
+              <th scope="col">Task</th>
+              <th scope="col">Step 1</th>
+              <th scope="col">Step 2</th>
+              <th scope="col">Step 3</th>
+            </tr>
+          </thead>
+          <tbody>
+            {TASK_METHOD_ROWS.map(([task, s1, s2, s3]) => (
+              <tr key={task}>
+                <td>{task}</td>
+                <td>{s1}</td>
+                <td>{s2}</td>
+                <td>{s3}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="methodology__body methodology__body--after-table">
+        Steps are shown based on your level. Level 1 shows Step 1 only. Level 2 adds Step 2. Level 3 and above add Step 3.
+      </p>
+
+      <hr className="methodology__rule" aria-hidden="true" />
+
+      <h2 className="methodology__heading">Verification levels</h2>
+      <p className="methodology__body">
+        Thresholds are calibrated to keep most internal work at levels 1 and 2, with level 3 reserved for externally consequential outputs and level 4 for regulated or formally accountable ones.
+      </p>
+      <div className="methodology__table-wrap">
+        <table className="methodology__table methodology__table--levels">
+          <thead>
+            <tr>
+              <th scope="col">Level</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Score</th>
+            </tr>
+          </thead>
+          <tbody>
+            {LEVEL_TABLE_ROWS.map(([level, name, desc, score]) => (
+              <tr key={level}>
+                <td>{level}</td>
+                <td>{name}</td>
+                <td>{desc}</td>
+                <td>{score}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <hr className="methodology__rule" aria-hidden="true" />
+
+      <h2 className="methodology__heading">Technical notes</h2>
+      <p className="methodology__disclaimer methodology__disclaimer--flush">
+        AVA is a deterministic decision aid. It runs entirely in your browser with no backend, no model calls, and no data storage. The recommendations come from a fixed scoring table and a task-method matrix. All selection rules are deterministic and fixed. AVA tells you how to verify; it does not verify for you. Human judgement remains essential at every level.
+      </p>
+
+      <p className="methodology__body methodology__drawer-cross">
+        See the full list of verification prompts in{" "}
+        <button type="button" className="drawer-cross-link" onClick={() => onOpenOther?.()}>
+          Verification methods →
+        </button>
+      </p>
     </article>
   );
 }

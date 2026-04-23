@@ -28,7 +28,7 @@ export function computeScore(inputs: Inputs, config: ScoringConfig): ScoreBreakd
 
   const adjustments = {
     impact: inputs.impact === "I3" ? config.adjustments.impactHigh : 0,
-    taskRisk: config.highRiskTasks.includes(inputs.task) ? config.adjustments.highRiskTask : 0,
+    taskRisk: config.taskAdjustments[inputs.task],
     evidence: inputs.evidence === "E3" ? config.adjustments.noEvidence : 0
   };
 

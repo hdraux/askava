@@ -1,5 +1,5 @@
 /* ═══════════════════════════════════════════════════════════════════════════
-   AVA — styles.css (v3, full rewrite)
+   AVA: styles.css (v3, full rewrite)
    Design language: warm off-white bg, forest green primary, soft cards,
    humanist typography. Replaces the old navy/blue system entirely.
    ═══════════════════════════════════════════════════════════════════════════ */
@@ -8,7 +8,7 @@
 
 :root {
   /* Backgrounds */
-  --bg:           #F7F5F2;   /* page background — warm off-white */
+  --bg:           #F7F5F2;   /* page background: warm off-white */
   --surface:      #FFFFFF;   /* card / modal surface */
   --surface-soft: #F2F0EC;   /* subtle inset surfaces */
 
@@ -22,7 +22,7 @@
   /* Text */
   --text:         #1C2B22;   /* primary text */
   --text-muted:   #6B7B6E;   /* secondary / helper text */
-  --text-hint:    #9CA89E;   /* very muted — hints, disclaimers */
+  --text-hint:    #9CA89E;   /* very muted: hints, disclaimers */
 
   /* Borders */
   --border:       rgba(0,0,0,0.08);
@@ -227,7 +227,7 @@ button.ava-header__brand {
   transform: none;
 }
 
-/* UNUSED? Stepper — .stepper / .stepper__* were only used by deleted Stepper.tsx; responsive rules still reference .stepper below. */
+/* UNUSED? Stepper: .stepper / .stepper__* were only used by deleted Stepper.tsx; responsive rules still reference .stepper below. */
 
 /* ── Stepper ────────────────────────────────────────────────────────────── */
 
@@ -288,7 +288,7 @@ button.ava-header__brand {
   border-color: var(--green);
 }
 
-/* UNUSED? Legacy wizard shell — .wizard / .wizard__* / .wizard-footer only matched deleted VerificationWizard.tsx + WizardFooter.tsx; responsive rules still reference these classes below. */
+/* UNUSED? Legacy wizard shell: .wizard / .wizard__* / .wizard-footer only matched deleted VerificationWizard.tsx + WizardFooter.tsx; responsive rules still reference these classes below. */
 
 /* ── Wizard ─────────────────────────────────────────────────────────────── */
 
@@ -326,7 +326,7 @@ button.ava-header__brand {
 }
 
 .wizard__status:has(+ .wizard-footer) {
-  /* status just above footer — a little breathing room */
+  /* status just above footer: a little breathing room */
 }
 
 /* ── Wizard footer ──────────────────────────────────────────────────────── */
@@ -467,7 +467,7 @@ button.ava-header__brand {
   font-weight: 500;
 }
 
-/* UNUSED? Debug + input summary — .debug-toggle matched deleted DebugPanel.tsx; .summary-grid + .result__empty matched deleted InputSummary/Result; bare `summary` has no <details>/<summary> in current TSX. */
+/* UNUSED? Debug + input summary: .debug-toggle matched deleted DebugPanel.tsx; .summary-grid + .result__empty matched deleted InputSummary/Result; bare `summary` has no <details>/<summary> in current TSX. */
 
 /* ── Debug / misc ───────────────────────────────────────────────────────── */
 
@@ -692,7 +692,150 @@ summary {
   padding: 26px;
 }
 
+.drawer-cross-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 74, 62, 0.35);
+  text-underline-offset: 2px;
+}
+
+.drawer-cross-link:hover {
+  color: var(--green);
+  text-decoration-color: var(--green-hover);
+}
+
+.drawer-cross-link:focus-visible {
+  outline: 2px solid var(--green);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.prompt-library__drawer-cross {
+  margin-top: 22px;
+  margin-bottom: 0;
+}
+
+.methodology__drawer-cross {
+  margin-top: 18px;
+  margin-bottom: 0;
+}
+
 /* ── Methodology ────────────────────────────────────────────────────────── */
+
+.methodology__title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin: 0 0 20px;
+}
+
+.methodology__rule {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 22px 0;
+}
+
+.methodology__subheading--tight {
+  margin-top: 16px;
+}
+
+.methodology__subheading--tight:first-of-type {
+  margin-top: 14px;
+}
+
+.methodology__table-wrap {
+  overflow-x: auto;
+  margin: 8px 0 4px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.methodology__table {
+  width: 100%;
+  min-width: 260px;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.methodology__table th,
+.methodology__table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-muted);
+}
+
+.methodology__table th {
+  background: var(--surface-soft);
+  color: var(--text);
+  font-weight: 700;
+  font-size: 0.78rem;
+  text-transform: none;
+}
+
+.methodology__table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.methodology__table td:last-child {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.methodology__table--wide {
+  min-width: 520px;
+}
+
+.methodology__table--wide td:not(:first-child) {
+  white-space: normal;
+  font-weight: 400;
+  color: var(--text-muted);
+}
+
+.methodology__table--levels {
+  min-width: 480px;
+}
+
+.methodology__table--levels td:nth-child(4) {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.methodology__table--levels td:nth-child(1) {
+  white-space: nowrap;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.methodology__table--levels td:nth-child(2) {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+.methodology__body--after-table {
+  margin-top: 12px;
+}
+
+.methodology__disclaimer--flush {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: none;
+}
 
 .methodology__tldr {
   background: var(--green);
@@ -1008,6 +1151,80 @@ summary {
   line-height: 1.6;
 }
 
+.prompt-library__reading {
+  margin-top: 28px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.prompt-library__reading-h2 {
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
+}
+
+.prompt-library__reading-h3 {
+  margin: 0 0 12px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-hint);
+  line-height: 1.4;
+}
+
+.prompt-library__reading-list + .prompt-library__reading-h3 {
+  margin-top: 28px;
+}
+
+.prompt-library__reading-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.prompt-library__reading-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.prompt-library__reading-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--green);
+  text-decoration: underline;
+  text-decoration-color: rgba(45, 74, 62, 0.35);
+  text-underline-offset: 2px;
+  align-self: flex-start;
+}
+
+.prompt-library__reading-title:hover {
+  color: var(--green-hover);
+  text-decoration-color: var(--green-hover);
+}
+
+.prompt-library__reading-why,
+.prompt-library__reading-get {
+  margin: 0;
+  font-size: 0.83rem;
+  line-height: 1.6;
+}
+
+.prompt-library__reading-why {
+  color: var(--text-muted);
+}
+
+.prompt-library__reading-get {
+  color: var(--text-hint);
+}
+
 /* ── Prompt card (shared) ───────────────────────────────────────────────── */
 
 .prompt-card {
@@ -1146,7 +1363,7 @@ summary {
   flex-shrink: 0;
 }
 
-/* UNUSED? Result screen — all .result-screen__* rules only matched deleted ResultScreen.tsx (including .result-screen__step-num / __switch-* / __model-* which were never referenced in that file). */
+/* UNUSED? Result screen: all .result-screen__* rules only matched deleted ResultScreen.tsx (including .result-screen__step-num / __switch-* / __model-* which were never referenced in that file). */
 
 /* ── Result screen ──────────────────────────────────────────────────────── */
 
@@ -1530,7 +1747,7 @@ summary {
   border-radius: 4px;
 }
 
-/* UNUSED? Legacy .result card — only matched deleted Result.tsx */
+/* UNUSED? Legacy .result card: only matched deleted Result.tsx */
 
 /* ── Legacy result classes (Result.tsx) ─────────────────────────────────── */
 
@@ -1817,6 +2034,13 @@ summary {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin-top: 2.5rem;
+}
+
+.reveal-wizard__prompts-hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin: 0.25rem 0 1rem 0;
 }
 
 .reveal-wizard__section-label {
@@ -1917,7 +2141,7 @@ summary {
   display: block;
 }
 
-/* Choice card icons — neutral, matches design system */
+/* Choice card icons: neutral, matches design system */
 .choice-card__icon {
   background: #F0EDE8;
   color: #4A6558;
@@ -1928,7 +2152,7 @@ summary {
   color: #2D4A3E;
 }
 
-/* Icon SVGs inside choice cards — force neutral stroke, no inherited colour */
+/* Icon SVGs inside choice cards: force neutral stroke, no inherited colour */
 .choice-card__icon svg {
   stroke: currentColor;
   fill: none;

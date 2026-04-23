@@ -32,14 +32,14 @@ export const STEP_METADATA: Record<1 | 2 | 3 | 4, StepMeta> = {
 };
 
 export const TASK_OPTIONS: ChoiceOption<TaskType>[] = [
-  { value: "T10", label: "Policy interpretation", description: "Laws, regulations, policies, or guidance", icon: "⚖" },
-  { value: "T9", label: "Data analysis", description: "Trends, calculations, or statistical insights", icon: "📊" },
   { value: "T3", label: "Content generation", description: "Drafts, reports, summaries, or recommendations", icon: "✍" },
-  { value: "T7", label: "Information lookup", description: "Facts, definitions, or quick answers", icon: "🔍" },
+  { value: "T9", label: "Data analysis", description: "Trends, calculations, or statistical insights", icon: "📊" },
   { value: "T2", label: "Summarisation", description: "Meeting notes, document summaries, data pulled from text", icon: "📝" },
-  { value: "T5", label: "Translation", description: "Text translated between languages", icon: "🌐" },
+  { value: "T7", label: "Information lookup", description: "Facts, definitions, or quick answers", icon: "🔍" },
   { value: "T4", label: "Coding assistance", description: "Code generation, debugging, or technical explanations", icon: "💻" },
-  { value: "T8", label: "Other", description: "Something not listed above", icon: "…" }
+  { value: "T1", label: "Classification / labelling", description: "Tags, categories, or labels applied to content", icon: "🏷" },
+  { value: "T5", label: "Translation", description: "Text translated between languages", icon: "🌐" },
+  { value: "T10", label: "Policy interpretation", description: "Laws, regulations, policies, or guidance", icon: "⚖" }
 ];
 
 export const USE_OPTIONS: ChoiceOption<IntendedUse>[] = [

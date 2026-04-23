@@ -16,7 +16,11 @@ const FILTERS: { id: Filter; label: string }[] = [
   { id: 3, label: "Level 3+" },
 ];
 
-export default function PromptLibrary() {
+type PromptLibraryProps = {
+  onOpenOther?: () => void;
+};
+
+export default function PromptLibrary({ onOpenOther }: PromptLibraryProps) {
   const [activeFilter, setActiveFilter] = useState<Filter>("all");
   const [openId, setOpenId] = useState<string | null>(PROMPT_LIBRARY[0]?.id ?? null);
   const [copiedId, setCopiedId] = useState<string | null>(null);
@@ -44,7 +48,7 @@ export default function PromptLibrary() {
           <line x1="7" y1="5" x2="7" y2="7.5" />
           <circle cx="7" cy="9.5" r="0.5" fill="currentColor" />
         </svg>
-        These are the exact prompts AVA selects for you based on your risk score. You can also run any of them manually — paste into the same AI tool that produced the output.
+        These are the prompts AVA selects based on the verification level it assigns. You can also run any of them manually: paste into the same AI tool that produced the output.
       </p>
 
       <div className="prompt-library__filters" role="group" aria-label="Filter by level">
@@ -150,7 +154,191 @@ export default function PromptLibrary() {
       </ul>
 
       <p className="prompt-library__footer-note">
-        Run each prompt in a new conversation — paste your AI output fresh each time so prior context doesn't influence the result.
+        Run each prompt in a new conversation: paste your AI output fresh each time to reduce the chance that prior context influences the result.
+      </p>
+
+      <div className="prompt-library__reading">
+        <h2 className="prompt-library__reading-h2">Further reading</h2>
+
+        <h3 className="prompt-library__reading-h3">Practical</h3>
+        <ul className="prompt-library__reading-list">
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://arize.com/llm-evaluation/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Arize: The Definitive Guide to LLM Evaluation
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: Explains when exact-match checking works and when it doesn’t — the distinction
+              behind AVA’s task types.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: A clear framework for choosing the right verification approach
+              based on output type.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://docs.langchain.com/langsmith/evaluation"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              LangSmith: Evaluation Concepts
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: Covers how to define what can be measured before designing evaluation — the
+              thinking behind AVA’s evidence question.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: Practical guidance on structuring evaluation for different kinds
+              of AI outputs.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://hamel.dev/blog/posts/evals/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Hamel Husain: Your AI Product Needs Evals
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: Practical guide to building evaluation systems for AI products, with emphasis
+              on starting from error analysis rather than infrastructure.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: A concrete workflow for deciding when and how to evaluate AI
+              outputs, written from direct consulting experience.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://eugeneyan.com/writing/llm-evaluators/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Eugene Yan: LLM Evaluators
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: Comprehensive survey of evaluation techniques, use cases, and the limits of
+              automated checking — directly relevant to understanding when human review is
+              necessary.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: A practitioner’s map of the evaluation landscape, from metrics
+              to alignment to critique.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://www.nist.gov/itl/ai-risk-management-framework"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              NIST AI Risk Management Framework
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: A widely used framework for proportional, risk-based AI oversight that
+              informed AVA’s overall approach.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: A structured approach to thinking about AI risk across different
+              use contexts.
+            </p>
+          </li>
+        </ul>
+
+        <h3 className="prompt-library__reading-h3">Research</h3>
+        <ul className="prompt-library__reading-list">
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://arxiv.org/abs/2207.05221"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Kadavath et al. (2022): Language Models (Mostly) Know What They Know
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: The research behind AVA’s confidence elicitation prompt: shows that model
+              confidence can sometimes provide a useful signal about uncertainty.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: Evidence that prompting for uncertainty is a meaningful signal,
+              not just reassurance.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://arxiv.org/abs/2201.11903"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Wei et al. (2022): Chain-of-Thought Prompting Elicits Reasoning in Large Language
+              Models
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: The origin of AVA’s chain of thought prompt: shows that prompting for
+              step-by-step reasoning can improve performance and provide intermediate steps to
+              inspect.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: Why step-by-step reconstruction can help expose errors that
+              surface-level review may miss.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://arxiv.org/abs/2212.08073"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Bai et al. (2022): Constitutional AI: Harmlessness from AI Feedback
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: The paper behind model self-critique as a structured method: using a model’s
+              own principles to evaluate and revise its outputs.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: The foundational mechanism that AVA’s self-critique prompt draws
+              on.
+            </p>
+          </li>
+          <li className="prompt-library__reading-item">
+            <a
+              className="prompt-library__reading-title"
+              href="https://arxiv.org/abs/2303.17651"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Madaan et al. (2023): Self-Refine: Iterative Refinement with Self-Feedback
+            </a>
+            <p className="prompt-library__reading-why">
+              Why: Shows that iterative self-critique can improve outputs across diverse tasks,
+              and examines where the method works and where it does not.
+            </p>
+            <p className="prompt-library__reading-get">
+              What you’ll get: Evidence for when self-critique is most useful, and what its limits
+              are.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <p className="prompt-library__reading-get prompt-library__drawer-cross">
+        Want to understand how AVA assigns these methods?{" "}
+        <button type="button" className="drawer-cross-link" onClick={() => onOpenOther?.()}>
+          How it works →
+        </button>
       </p>
     </div>
   );

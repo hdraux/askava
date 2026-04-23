@@ -24,10 +24,9 @@ export interface Inputs {
 
 export interface ScoringConfig {
   baseScores: Record<IntendedUse, number>;
-  highRiskTasks: TaskType[];
+  taskAdjustments: Record<TaskType, number>;
   adjustments: {
     impactHigh: number;
-    highRiskTask: number;
     noEvidence: number;
   };
   maxLevel: VerificationLevel;

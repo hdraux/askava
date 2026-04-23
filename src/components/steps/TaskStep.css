@@ -1,5 +1,5 @@
 /* src/components/steps/TaskStep.css
-   Scope: .task-step and children only — no global rules.
+   Scope: .task-step and children only; no global rules.
    Matches AVA mockup: navy/white, 2-col grid on mobile → 4-col on desktop,
    selected state with blue border + check badge, icon in grey pill. */
 
@@ -49,7 +49,7 @@
     border-color: #164b9b;
   }
   
-  /* Selected state — matches mockup blue border */
+  /* Selected state: matches mockup blue border */
   .task-step__card--selected {
     border-color: #164b9b;
     border-width: 1.5px;

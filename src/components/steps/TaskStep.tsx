@@ -77,12 +77,11 @@ function IconCode() {
   );
 }
 
-function IconOther() {
+function IconClassify() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="5" cy="10" r="1.2" fill="none" stroke="currentColor" />
-      <circle cx="10" cy="10" r="1.2" fill="none" stroke="currentColor" />
-      <circle cx="15" cy="10" r="1.2" fill="none" stroke="currentColor" />
+      <path d="M2.5 3.5h4.2L18 10l-6.5 6.5L2.5 10V3.5z" />
+      <circle cx="5" cy="5" r="0.9" fill="currentColor" stroke="none" />
     </svg>
   );
 }
@@ -90,14 +89,14 @@ function IconOther() {
 // ── Options ───────────────────────────────────────────────────────────────────
 
 const OPTIONS: { value: TaskType; label: string; description: string; icon: React.ReactNode }[] = [
-  { value: "T10", label: "Policy interpretation", description: "Laws, regulations, policies, or guidance",              icon: <IconPolicy /> },
-  { value: "T9",  label: "Data analysis",         description: "Trends, calculations, or statistical insights",        icon: <IconData /> },
-  { value: "T3",  label: "Content generation",    description: "Drafts, reports, summaries, or recommendations",      icon: <IconContent /> },
-  { value: "T7",  label: "Information lookup",    description: "Facts, definitions, or quick answers",                icon: <IconSearch /> },
-  { value: "T2",  label: "Summarisation",         description: "Meeting notes, document summaries, data pulled from text", icon: <IconList /> },
-  { value: "T5",  label: "Translation",           description: "Text translated between languages",                   icon: <IconTranslate /> },
-  { value: "T4",  label: "Coding assistance",     description: "Code generation, debugging, or technical explanations", icon: <IconCode /> },
-  { value: "T8",  label: "Other",                 description: "Something not listed above",                          icon: <IconOther /> },
+  { value: "T3",  label: "Content generation",      description: "Drafts, reports, summaries, or recommendations",         icon: <IconContent /> },
+  { value: "T9",  label: "Data analysis",           description: "Trends, calculations, or statistical insights",          icon: <IconData /> },
+  { value: "T2",  label: "Summarisation",           description: "Meeting notes, document summaries, data pulled from text", icon: <IconList /> },
+  { value: "T7",  label: "Information lookup",     description: "Facts, definitions, or quick answers",                 icon: <IconSearch /> },
+  { value: "T4",  label: "Coding assistance",       description: "Code generation, debugging, or technical explanations",  icon: <IconCode /> },
+  { value: "T1",  label: "Classification / labelling", description: "Tags, categories, or labels applied to content",  icon: <IconClassify /> },
+  { value: "T5",  label: "Translation",             description: "Text translated between languages",                    icon: <IconTranslate /> },
+  { value: "T10", label: "Policy interpretation",  description: "Laws, regulations, policies, or guidance",            icon: <IconPolicy /> },
 ];
 
 // ── Component ─────────────────────────────────────────────────────────────────

@@ -1,4 +1,4 @@
-# LLM Output Verification Advisor — Concept
+# LLM Output Verification Advisor: Concept
 
 This repo contains a lightweight, deterministic decision aid for recommending appropriate verification of LLM outputs.
 

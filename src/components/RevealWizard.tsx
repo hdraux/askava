@@ -12,11 +12,14 @@ import {
   EVIDENCE_OPTIONS,
 } from "./wizardMetadata";
 import { PROMPT_LIBRARY } from "../lib/promptLibraryData";
+import type { PromptEntry } from "../lib/promptLibraryData";
 import { evaluate } from "../lib/evaluate";
+import { selectPrompts } from "../lib/selectPrompts";
 import {
   escalationConfigTyped,
   recommendationMapTyped,
   scoringConfigTyped,
+  taskMethodMatrixTyped,
 } from "../lib/parseConfig";
 
 // ── Icons ─────────────────────────────────────────────────────────────────────
@@ -123,9 +126,14 @@ export default function RevealWizard() {
 
   const level = evalResult ? (evalResult.recommendation.level as number) : null;
   const lm = level !== null ? LEVEL_META[level] ?? LEVEL_META[4] : null;
-  const applicablePrompts = evalResult
-    ? PROMPT_LIBRARY.filter((p) => level !== null && level >= p.minLevel)
-    : [];
+  const selectedPromptIds =
+    inputs && level !== null
+      ? selectPrompts(inputs.task, level, inputs.evidence, inputs.impact, taskMethodMatrixTyped)
+      : [];
+
+  const applicablePrompts: PromptEntry[] = selectedPromptIds
+    .map((id) => PROMPT_LIBRARY.find((p) => p.id === id))
+    .filter((p): p is PromptEntry => p !== undefined);
 
   function selectOption(stepId: StepId, value: string, stepIdx: number) {
     const newAnswers = { ...answers, [stepId]: value };
@@ -288,6 +296,9 @@ export default function RevealWizard() {
                   <div className="reveal-wizard__section-label">
                     Pick one prompt per step
                   </div>
+                  <p className="reveal-wizard__prompts-hint">
+                    You don't need to run all of them: one per step is enough.
+                  </p>
                   <ul className="reveal-wizard__prompts" aria-label="Verification prompts">
                     {applicablePrompts.map((p, i) => {
                       const isOpen = openPromptId === p.id;

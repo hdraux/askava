@@ -28,7 +28,7 @@ export default function App() {
         onClose={() => setDrawerView(null)}
         title="How it works"
       >
-        <Methodology />
+        <Methodology onOpenOther={() => setDrawerView("prompts")} />
       </Drawer>
 
       <Drawer
@@ -36,7 +36,7 @@ export default function App() {
         onClose={() => setDrawerView(null)}
         title="Verification methods"
       >
-        <PromptLibrary />
+        <PromptLibrary onOpenOther={() => setDrawerView("methodology")} />
       </Drawer>
 
       <FirstRunModal onDismiss={() => {}} />

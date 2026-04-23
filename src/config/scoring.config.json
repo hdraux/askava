@@ -6,10 +6,20 @@
     "U4": 3,
     "U5": 4
   },
-  "highRiskTasks": ["T1", "T4", "T9", "T10"],
+  "taskAdjustments": {
+    "T1": 1,
+    "T2": 0,
+    "T3": 0,
+    "T4": 1,
+    "T5": 0,
+    "T6": 0,
+    "T7": 0,
+    "T8": 0,
+    "T9": 2,
+    "T10": 2
+  },
   "adjustments": {
     "impactHigh": 1,
-    "highRiskTask": 1,
     "noEvidence": 1
   },
   "maxLevel": 4
