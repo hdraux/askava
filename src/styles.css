@@ -53,29 +53,65 @@ label {
   color: #2a3d59;
 }
 
-select,
-button {
+select {
   font: inherit;
   padding: 11px 14px;
   border-radius: 10px;
   border: 1px solid var(--ava-border-strong);
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+/* ── Base button reset — intentionally minimal so variants take over ── */
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  border-radius: 10px;
+  padding: 11px 20px;
+  min-height: 44px;
+  background: transparent;
+  color: inherit;
   transition: border-color 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease, transform 160ms ease;
 }
 
-button {
-  width: auto;
+/* ── Primary action button (Back/Continue/Get recommendation) ── */
+.btn-primary {
   background: var(--ava-navy);
-  color: white;
-  cursor: pointer;
-  border: none;
+  color: #ffffff;
   font-weight: 600;
-  min-height: 44px;
   letter-spacing: 0.01em;
+  min-width: 120px;
 }
 
-button:hover:not(:disabled) {
+.btn-primary:hover:not(:disabled) {
   background: var(--ava-navy-strong);
   transform: translateY(-1px);
+}
+
+.btn-primary:disabled {
+  background: #c7d0db;
+  color: #f0f4f8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ── Secondary button ── */
+.btn-secondary {
+  background: var(--ava-surface);
+  color: #2f4668;
+  border: 1px solid var(--ava-border-strong);
+  font-weight: 500;
+  min-width: 120px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: #f5f8fc;
+  border-color: #b9c6d6;
+}
+
+.btn-secondary:disabled {
+  color: #a0adbf;
+  cursor: not-allowed;
 }
 
 button:focus-visible,
@@ -85,24 +121,7 @@ summary:focus-visible {
   box-shadow: var(--ava-focus);
 }
 
-button:disabled {
-  background: #c7d0db;
-  color: #f7f9fc;
-  cursor: not-allowed;
-  transform: none;
-}
-
-.button-secondary {
-  background: var(--ava-surface);
-  color: #2f4668;
-  border: 1px solid var(--ava-border-strong);
-}
-
-.button-secondary:hover:not(:disabled) {
-  background: #f5f8fc;
-  border-color: #b9c6d6;
-}
-
+/* ── Header ── */
 .ava-header {
   display: flex;
   justify-content: space-between;
@@ -125,6 +144,8 @@ button:disabled {
 .ava-logo-mark {
   display: block;
   flex-shrink: 0;
+  height: 36px;
+  width: auto;
 }
 
 .ava-header__title {
@@ -138,25 +159,24 @@ button:disabled {
 .ava-header__tagline {
   margin: 0;
   color: var(--ava-text-muted);
-  font-size: 1rem;
-  white-space: normal;
+  font-size: 0.97rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
 }
 
-.ava-header__tagline::before {
-  content: "⚡";
-  color: var(--ava-green);
-  margin-right: 8px;
-}
-
+/* ── Wizard ── */
 .wizard {
   margin-bottom: 18px;
 }
 
 .wizard__title {
   margin: 34px 0 10px;
-  font-size: clamp(1.95rem, 2.4vw, 2.85rem);
+  font-size: clamp(1.75rem, 2.4vw, 2.5rem);
+  font-weight: 700;
   line-height: 1.14;
-  color: #203658;
+  color: #1a2f4a;
   letter-spacing: -0.012em;
 }
 
@@ -169,17 +189,19 @@ button:disabled {
 .wizard__helper {
   margin: 0 0 30px;
   color: var(--ava-text-muted);
-  font-size: 1.22rem;
-  line-height: 1.4;
-  max-width: 58ch;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  max-width: 64ch;
+  font-weight: 400;
 }
 
 .wizard__status {
   margin: -8px 0 18px;
   color: #5c6c85;
-  font-size: 0.94rem;
+  font-size: 0.92rem;
 }
 
+/* ── Stepper ── */
 .stepper {
   list-style: none;
   display: flex;
@@ -210,6 +232,7 @@ button:disabled {
   align-items: center;
   justify-content: center;
   font-weight: 600;
+  font-size: 0.9rem;
   border: 1px solid #d6dde8;
   background: #f0f4f9;
   color: #6f7f97;
@@ -222,6 +245,7 @@ button:disabled {
   border-color: var(--ava-navy);
 }
 
+/* ── Wizard footer ── */
 .wizard-footer {
   display: flex;
   justify-content: space-between;
@@ -231,95 +255,118 @@ button:disabled {
   margin-top: 14px;
 }
 
-.wizard-footer button {
-  min-width: 120px;
-}
-
+/* ── Choice grid ── */
 .choice-grid {
   display: grid;
-  gap: 16px;
+  gap: 14px;
   margin-bottom: 28px;
 }
 
-.choice-grid--4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
+.choice-grid--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.choice-grid--5 { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.choice-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-.choice-grid--5 {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.choice-grid--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
+/* ── Choice card ── */
+/* NOTE: all button style overrides are explicit here so the base button
+   reset above doesn't leak anything unwanted. */
 .choice-card {
+  position: relative;
   width: 100%;
-  min-height: 168px;
+  min-height: 160px;
   text-align: left;
   background: var(--ava-surface);
   color: var(--ava-text);
   border: 1px solid var(--ava-border);
   border-radius: 12px;
-  padding: 18px 16px;
+  padding: 18px 16px 16px;
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
+  font-weight: 400;
+  letter-spacing: normal;
+  cursor: pointer;
+  transition: border-color 160ms ease, box-shadow 160ms ease, background 160ms ease;
 }
 
 .choice-card:hover {
   border-color: #bac8d9;
   background: #fbfdff;
-  box-shadow: 0 8px 18px rgba(20, 36, 61, 0.08);
+  box-shadow: 0 6px 16px rgba(20, 36, 61, 0.07);
 }
 
 .choice-card:focus-visible {
+  outline: none;
   border-color: var(--ava-navy);
-  box-shadow: var(--ava-focus), 0 8px 20px rgba(18, 32, 53, 0.1);
+  box-shadow: var(--ava-focus);
 }
 
 .choice-card.is-selected {
-  border-color: #5f93de;
-  box-shadow: 0 0 0 1px #5f93de inset, 0 10px 22px rgba(36, 72, 130, 0.13);
+  border-color: #5b8fd9;
+  border-width: 1.5px;
   background: #f2f6fd;
+  color: var(--ava-text);
+  box-shadow: 0 8px 20px rgba(36, 72, 130, 0.1);
 }
 
+/* ── Check badge (top-right, only when selected) ── */
+.choice-card__check {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #2c5ea8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* ── Icon pill ── */
 .choice-card__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 38px;
   height: 38px;
-  border-radius: 999px;
+  border-radius: 50%;
   background: #f0f3f8;
-  color: #415b84;
+  color: #4a6384;
+  flex-shrink: 0;
 }
 
 .choice-card.is-selected .choice-card__icon {
-  background: #e3ecfb;
+  background: #dce8f8;
   color: #2c5ea8;
 }
 
+/* ── Card text ── */
 .choice-card__label {
-  font-size: 1.15rem;
-  font-weight: 700;
-  line-height: 1.28;
-  color: #243954;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.3;
+  color: #1e3250;
+}
+
+.choice-card.is-selected .choice-card__label {
+  color: #1e3250;
 }
 
 .choice-card__description {
   color: var(--ava-text-muted);
-  font-size: 1rem;
+  font-size: 0.92rem;
   line-height: 1.45;
+  font-weight: 400;
 }
 
+/* ── Result screen ── */
 .result-screen {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
-/* ── Top selections bar ── */
 .result-screen__bar {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -343,22 +390,11 @@ button:disabled {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  transform: none;
 }
 
-.result-screen__field:first-child {
-  padding-left: 0;
-}
-
-.result-screen__field:last-child {
-  padding-right: 0;
-  border-right: none;
-}
-
-.result-screen__field:hover:not(:disabled) {
-  background: none;
-  transform: none;
-}
+.result-screen__field:first-child { padding-left: 0; }
+.result-screen__field:last-child  { padding-right: 0; border-right: none; }
+.result-screen__field:hover:not(:disabled) { background: none; transform: none; }
 
 .result-screen__field-header {
   display: flex;
@@ -394,7 +430,6 @@ button:disabled {
   background: var(--ava-surface);
 }
 
-/* ── Two-column content area ── */
 .result-screen__cols {
   display: grid;
   grid-template-columns: minmax(280px, 0.9fr) minmax(320px, 1.1fr);
@@ -402,10 +437,8 @@ button:disabled {
   align-items: start;
 }
 
-/* ── Left: Verification Level card ── */
-.result-screen__level-card {
-  margin-bottom: 0;
-}
+.result-screen__level-card   { margin-bottom: 0; }
+.result-screen__checklist-card { margin-bottom: 0; }
 
 .result-screen__hero {
   display: flex;
@@ -442,13 +475,8 @@ button:disabled {
   background: #d6e0ec;
 }
 
-.result-screen__progress-seg.is-past {
-  background: #7aaae0;
-}
-
-.result-screen__progress-seg.is-current {
-  background: #2e60b0;
-}
+.result-screen__progress-seg.is-past    { background: #7aaae0; }
+.result-screen__progress-seg.is-current { background: #2e60b0; }
 
 .result-screen__progress-nums {
   display: flex;
@@ -474,11 +502,6 @@ button:disabled {
   margin: 0;
 }
 
-/* ── Right: Verification Checklist card ── */
-.result-screen__checklist-card {
-  margin-bottom: 0;
-}
-
 .result-screen__checklist {
   list-style: none;
   padding: 0;
@@ -493,22 +516,16 @@ button:disabled {
   border-bottom: 1px solid var(--ava-border);
 }
 
-.result-screen__check-item:first-child {
-  padding-top: 0;
-}
-
-.result-screen__check-item:last-child {
-  border-bottom: none;
-  padding-bottom: 0;
-}
+.result-screen__check-item:first-child { padding-top: 0; }
+.result-screen__check-item:last-child  { border-bottom: none; padding-bottom: 0; }
 
 .result-screen__check-icon {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: #edf2fb;
   color: #3264b8;
@@ -518,9 +535,10 @@ button:disabled {
   font-weight: 600;
   color: var(--ava-text);
   line-height: 1.5;
-  padding-top: 11px;
+  padding-top: 10px;
 }
 
+/* ── Misc ── */
 .debug-toggle {
   display: flex;
   align-items: center;
@@ -530,9 +548,7 @@ button:disabled {
   color: #5b6780;
 }
 
-.debug-toggle input {
-  width: auto;
-}
+.debug-toggle input { width: auto; }
 
 .eyebrow {
   margin: 0 0 10px;
@@ -566,9 +582,7 @@ button:disabled {
   border-top: 1px solid #e6ebf2;
 }
 
-.result li + li {
-  margin-top: 0;
-}
+.result li + li { margin-top: 0; }
 
 .result li {
   padding: 13px 0;
@@ -613,9 +627,7 @@ button:disabled {
   margin: 12px 0 0;
 }
 
-.summary-grid dt {
-  font-weight: 600;
-}
+.summary-grid dt { font-weight: 600; }
 
 summary {
   cursor: pointer;
@@ -623,22 +635,14 @@ summary {
   color: #2a3f5d;
 }
 
+/* ── Responsive ── */
 @media (max-width: 700px) {
-  .app-shell {
-    padding: 22px 14px 44px;
-  }
-
-  .card {
-    padding: 20px 16px;
-  }
+  .app-shell { padding: 22px 14px 44px; }
+  .card { padding: 20px 16px; }
 
   .ava-header {
     flex-direction: column;
     align-items: flex-start;
-  }
-
-  .ava-header__tagline {
-    line-height: 1.45;
   }
 
   .stepper {
@@ -647,49 +651,19 @@ summary {
     padding-bottom: 4px;
   }
 
-  .stepper__item:not(:last-child)::after {
-    width: 28px;
-  }
+  .stepper__item:not(:last-child)::after { width: 24px; }
 
-  .wizard__title {
-    margin-top: 26px;
-    font-size: 1.72rem;
-  }
-
-  .wizard__helper {
-    margin-bottom: 22px;
-    font-size: 1.04rem;
-  }
+  .wizard__title { margin-top: 26px; font-size: 1.65rem; }
+  .wizard__helper { margin-bottom: 22px; font-size: 1rem; }
 
   .choice-grid--4,
   .choice-grid--5,
-  .choice-grid--3 {
-    grid-template-columns: 1fr;
-  }
+  .choice-grid--3 { grid-template-columns: 1fr; }
 
-  .result-screen__bar {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
+  .result-screen__bar { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .result-screen__field { border-right: none; padding: 0; }
+  .result-screen__cols { grid-template-columns: 1fr; }
 
-  .result-screen__field {
-    border-right: none;
-    padding: 0;
-  }
-
-  .result-screen__field:first-child {
-    padding-left: 0;
-  }
-
-  .result-screen__cols {
-    grid-template-columns: 1fr;
-  }
-
-  .wizard-footer {
-    flex-direction: column;
-  }
-
-  .wizard-footer button {
-    width: 100%;
-  }
+  .wizard-footer { flex-direction: column; }
+  .wizard-footer button { width: 100%; }
 }

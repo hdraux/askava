@@ -13,19 +13,35 @@ export default function WizardFooter({
   canProceed,
   onBack,
   onNext,
-  onEvaluate
+  onEvaluate,
 }: Props) {
   return (
     <div className="wizard-footer">
-      <button type="button" className="button-secondary" onClick={onBack} disabled={isFirstStep}>
+      <button
+        type="button"
+        className="btn-secondary"
+        onClick={onBack}
+        disabled={isFirstStep}
+      >
         Back
       </button>
+
       {isLastStep ? (
-        <button type="button" onClick={onEvaluate} disabled={!canProceed}>
+        <button
+          type="button"
+          className="btn-primary"
+          onClick={onEvaluate}
+          disabled={!canProceed}
+        >
           Get recommendation
         </button>
       ) : (
-        <button type="button" onClick={onNext} disabled={!canProceed}>
+        <button
+          type="button"
+          className="btn-primary"
+          onClick={onNext}
+          disabled={!canProceed}
+        >
           Continue
         </button>
       )}

@@ -1,40 +1,9 @@
-function AvaLogoMark() {
+import logoUrl from "../assets/logo.png";
+
+function LightningIcon() {
   return (
-    <svg
-      viewBox="0 0 64 52"
-      height="36"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      focusable="false"
-      className="ava-logo-mark"
-    >
-      {/* A-V-A letterform */}
-      <polyline
-        points="3,36 16,4 32,31 48,4 61,36"
-        stroke="#173a67"
-        strokeWidth="7.5"
-        strokeLinecap="butt"
-        strokeLinejoin="miter"
-        fill="none"
-      />
-      {/* Green accent chevron */}
-      <polyline
-        points="26,31 32,42 38,31"
-        stroke="#43a26f"
-        strokeWidth="5.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
-      {/* Slate accent chevron */}
-      <polyline
-        points="28.5,40 32,47 35.5,40"
-        stroke="#8699b2"
-        strokeWidth="4.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        fill="none"
-      />
+    <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M8.5 1.5L3 8.5H7.5L6.5 13.5L12 6.5H7.5L8.5 1.5Z" stroke="#43a26f" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
   );
 }
@@ -43,10 +12,13 @@ export default function Header() {
   return (
     <header className="ava-header">
       <div className="ava-header__brand">
-        <AvaLogoMark />
+        <img src={logoUrl} alt="AVA" className="ava-logo-mark" height="36" />
         <p className="ava-header__title">AI Verification Advisor</p>
       </div>
-      <p className="ava-header__tagline">Built for speed. Designed for clarity.</p>
+      <p className="ava-header__tagline">
+        <LightningIcon />
+        Built for speed. Designed for clarity.
+      </p>
     </header>
   );
 }
