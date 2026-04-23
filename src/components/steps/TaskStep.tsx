@@ -51,9 +51,9 @@ function IconList() {
       <line x1="7" y1="5" x2="17" y2="5"/>
       <line x1="7" y1="10" x2="17" y2="10"/>
       <line x1="7" y1="15" x2="17" y2="15"/>
-      <circle cx="3.5" cy="5" r="1" fill="currentColor" stroke="none"/>
-      <circle cx="3.5" cy="10" r="1" fill="currentColor" stroke="none"/>
-      <circle cx="3.5" cy="15" r="1" fill="currentColor" stroke="none"/>
+      <circle cx="3.5" cy="5" r="1" fill="none" stroke="currentColor" />
+      <circle cx="3.5" cy="10" r="1" fill="none" stroke="currentColor" />
+      <circle cx="3.5" cy="15" r="1" fill="none" stroke="currentColor" />
     </svg>
   );
 }
@@ -80,9 +80,9 @@ function IconCode() {
 function IconOther() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="5" cy="10" r="1.2" fill="currentColor" stroke="none"/>
-      <circle cx="10" cy="10" r="1.2" fill="currentColor" stroke="none"/>
-      <circle cx="15" cy="10" r="1.2" fill="currentColor" stroke="none"/>
+      <circle cx="5" cy="10" r="1.2" fill="none" stroke="currentColor" />
+      <circle cx="10" cy="10" r="1.2" fill="none" stroke="currentColor" />
+      <circle cx="15" cy="10" r="1.2" fill="none" stroke="currentColor" />
     </svg>
   );
 }

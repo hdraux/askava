@@ -33,6 +33,8 @@ const IMPACTS = ["I1", "I2", "I3"] as const satisfies readonly Impact[];
 
 const EVIDENCES = ["E1", "E2", "E3"] as const satisfies readonly Evidence[];
 
+// UNUSED? isTaskType / isVerificationLevel are exported but only referenced inside this file; no other module imports them.
+
 export function isTaskType(value: string): value is TaskType {
   return TASK_TYPES.some((t) => t === value);
 }

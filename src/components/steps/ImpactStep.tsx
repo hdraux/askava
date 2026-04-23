@@ -18,9 +18,9 @@ function IconLow() {
 function IconMedium() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="2" y="13" width="3" height="4" rx="0.5"/>
-      <rect x="8.5" y="9" width="3" height="8" rx="0.5"/>
-      <rect x="15" y="5" width="3" height="12" rx="0.5"/>
+      <rect x="2" y="13" width="3" height="4" rx="0.5" fill="none" />
+      <rect x="8.5" y="9" width="3" height="8" rx="0.5" fill="none" />
+      <rect x="15" y="5" width="3" height="12" rx="0.5" fill="none" />
     </svg>
   );
 }
@@ -28,9 +28,9 @@ function IconMedium() {
 function IconHigh() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M10 3l7 13H3L10 3z"/>
-      <line x1="10" y1="9" x2="10" y2="12"/>
-      <circle cx="10" cy="14.5" r="0.8" fill="currentColor" stroke="none"/>
+      <path d="M10 3l7 13H3L10 3z" fill="none" stroke="currentColor" />
+      <line x1="10" y1="9" x2="10" y2="12" />
+      <circle cx="10" cy="14.5" r="0.8" fill="none" stroke="currentColor" />
     </svg>
   );
 }
