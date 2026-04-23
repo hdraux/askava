@@ -15,19 +15,19 @@ export interface StepMeta {
 export const STEP_METADATA: Record<1 | 2 | 3 | 4, StepMeta> = {
   1: {
     title: "What kind of task did the AI do?",
-    helper: "This helps AVA recommend the right level of verification."
+    helper: "Choose the closest task type so AVA can set an appropriate verification baseline."
   },
   2: {
     title: "What will you use this output for?",
-    helper: "This helps AVA gauge how much is at stake."
+    helper: "Select the intended use to reflect how broadly this output will be relied on."
   },
   3: {
     title: "What happens if the output is wrong?",
-    helper: "This helps AVA calibrate how much care is needed."
+    helper: "Estimate impact if incorrect to calibrate review depth and controls."
   },
   4: {
     title: "Can you check this output against a source?",
-    helper: "This helps AVA recommend the right kind of verification."
+    helper: "Indicate source availability so AVA can suggest practical verification methods."
   }
 };
 

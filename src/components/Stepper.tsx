@@ -21,6 +21,7 @@ export default function Stepper({ totalSteps, currentStep }: Props) {
                 .filter(Boolean)
                 .join(" ")}
               aria-current={isCurrent ? "step" : undefined}
+              aria-label={`Step ${stepNumber} of ${totalSteps}${isCurrent ? ", current step" : ""}`}
             >
               {stepNumber}
             </span>

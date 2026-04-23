@@ -11,11 +11,15 @@ export default function Result({ data }: Props) {
       <h2>{data.level}: {data.levelName}</h2>
       <p>{data.explanation}</p>
 
-      <ul>
-        {data.checklist.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
+      {data.checklist.length > 0 ? (
+        <ul>
+          {data.checklist.map((item) => (
+            <li key={item}>{item}</li>
+          ))}
+        </ul>
+      ) : (
+        <p className="result__empty">No specific verification actions were generated for this case.</p>
+      )}
 
       {data.escalationNotice ? <p className="notice">{data.escalationNotice}</p> : null}
     </section>

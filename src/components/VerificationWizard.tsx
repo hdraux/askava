@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { Inputs } from "../lib/types";
 import TaskStep from "./steps/TaskStep";
 import UseStep from "./steps/UseStep";
@@ -18,6 +18,7 @@ const TOTAL_STEPS = 4;
 
 export default function VerificationWizard({ inputs, onInputsChange, onSubmit }: Props) {
   const [currentStep, setCurrentStep] = useState(1);
+  const headingRef = useRef<HTMLHeadingElement>(null);
 
   const canProceed = useMemo(() => {
     if (currentStep === 1) return Boolean(inputs.task);
@@ -28,6 +29,10 @@ export default function VerificationWizard({ inputs, onInputsChange, onSubmit }:
   const isFirstStep = currentStep === 1;
   const isLastStep = currentStep === TOTAL_STEPS;
   const stepMeta = STEP_METADATA[currentStep as 1 | 2 | 3 | 4];
+
+  useEffect(() => {
+    headingRef.current?.focus();
+  }, [currentStep]);
 
   const renderStep = () => {
     if (currentStep === 1) {
@@ -48,7 +53,7 @@ export default function VerificationWizard({ inputs, onInputsChange, onSubmit }:
   return (
     <section className="card wizard" aria-labelledby="wizard-heading">
       <Stepper totalSteps={TOTAL_STEPS} currentStep={currentStep} />
-      <h2 id="wizard-heading" className="wizard__title">
+      <h2 id="wizard-heading" className="wizard__title" tabIndex={-1} ref={headingRef}>
         {stepMeta.title}
       </h2>
       <p className="wizard__helper">{stepMeta.helper}</p>
