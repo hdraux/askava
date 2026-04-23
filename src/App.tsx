@@ -3,10 +3,12 @@ import Form from "./components/Form";
 import Result from "./components/Result";
 import DebugPanel from "./components/DebugPanel";
 import InputSummary from "./components/InputSummary";
-import scoringConfig from "./config/scoring.config.json";
-import escalationConfig from "./config/escalation.config.json";
-import recommendationMap from "./config/recommendation-map.json";
 import { evaluate } from "./lib/evaluate";
+import {
+  escalationConfigTyped,
+  recommendationMapTyped,
+  scoringConfigTyped
+} from "./lib/parseConfig";
 import type { Inputs, Result as EvaluationResult } from "./lib/types";
 
 export default function App() {
@@ -31,9 +33,9 @@ export default function App() {
           setResult(
             evaluate(
               completeInputs,
-              scoringConfig,
-              escalationConfig,
-              recommendationMap,
+              scoringConfigTyped,
+              escalationConfigTyped,
+              recommendationMapTyped,
               debug
             )
           );

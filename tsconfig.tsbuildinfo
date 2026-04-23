@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/main.tsx","./src/components/debugpanel.tsx","./src/components/form.tsx","./src/components/inputsummary.tsx","./src/components/result.tsx","./src/lib/escalation.ts","./src/lib/evaluate.ts","./src/lib/parseconfig.ts","./src/lib/recommendations.ts","./src/lib/scoring.ts","./src/lib/types.ts"],"version":"5.9.3"}
