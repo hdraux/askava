@@ -1,0 +1,91 @@
+{
+  "baseMatrix": {
+    "A1": {
+      "level0": [],
+      "level1": { "step1": ["scope-audit"],             "step2": [],                      "step3": [] },
+      "level2": { "step1": ["scope-audit"],             "step2": ["prompt-variation"],    "step3": [] },
+      "level3": { "step1": ["scope-audit"],             "step2": ["prompt-variation"],    "step3": ["source-verification", "known-literature-test"] },
+      "level4": { "step1": ["scope-audit"],             "step2": ["prompt-variation"],    "step3": ["source-verification", "known-literature-test"] }
+    },
+    "A2": {
+      "level0": [],
+      "level1": { "step1": ["scope-audit"],             "step2": [],                      "step3": [] },
+      "level2": { "step1": ["scope-audit"],             "step2": ["claim-evidence-audit"], "step3": [] },
+      "level3": { "step1": ["scope-audit"],             "step2": ["claim-evidence-audit"], "step3": ["citation-verification", "source-verification"] },
+      "level4": { "step1": ["scope-audit"],             "step2": ["claim-evidence-audit"], "step3": ["citation-verification", "source-verification"] }
+    },
+    "A3": {
+      "level0": [],
+      "level1": { "step1": ["novelty-audit"],           "step2": [],                      "step3": [] },
+      "level2": { "step1": ["novelty-audit"],           "step2": ["assumption-audit"],    "step3": [] },
+      "level3": { "step1": ["novelty-audit"],           "step2": ["assumption-audit"],    "step3": ["convergence-check", "known-literature-test"] },
+      "level4": { "step1": ["novelty-audit"],           "step2": ["assumption-audit"],    "step3": ["convergence-check", "known-literature-test"] }
+    },
+    "A4": {
+      "level0": [],
+      "level1": { "step1": ["self-critique"],           "step2": [],                      "step3": [] },
+      "level2": { "step1": ["self-critique"],           "step2": ["reproducibility-probe"], "step3": [] },
+      "level3": { "step1": ["self-critique"],           "step2": ["reproducibility-probe"], "step3": ["rule-based-check"] },
+      "level4": { "step1": ["self-critique"],           "step2": ["reproducibility-probe"], "step3": ["rule-based-check"] }
+    },
+    "A5": {
+      "level0": [],
+      "level1": { "step1": ["confidence-elicitation"],  "step2": [],                      "step3": [] },
+      "level2": { "step1": ["confidence-elicitation"],  "step2": ["assumption-audit"],    "step3": [] },
+      "level3": { "step1": ["confidence-elicitation"],  "step2": ["assumption-audit"],    "step3": ["computational-check", "rerunnability-check"] },
+      "level4": { "step1": ["confidence-elicitation"],  "step2": ["assumption-audit"],    "step3": ["computational-check", "rerunnability-check"] }
+    },
+    "A6": {
+      "level0": [],
+      "level1": { "step1": ["self-critique"],           "step2": [],                      "step3": [] },
+      "level2": { "step1": ["self-critique"],           "step2": ["claim-evidence-audit"], "step3": [] },
+      "level3": { "step1": ["self-critique"],           "step2": ["claim-evidence-audit"], "step3": ["source-verification"] },
+      "level4": { "step1": ["self-critique"],           "step2": ["claim-evidence-audit"], "step3": ["source-verification"] }
+    },
+    "A7": {
+      "level0": [],
+      "level1": { "step1": ["confidence-elicitation"],  "step2": [],                      "step3": [] },
+      "level2": { "step1": ["confidence-elicitation"],  "step2": ["claim-evidence-audit"], "step3": [] },
+      "level3": { "step1": ["confidence-elicitation"],  "step2": ["claim-evidence-audit"], "step3": ["assumption-audit"] },
+      "level4": { "step1": ["confidence-elicitation"],  "step2": ["claim-evidence-audit"], "step3": ["assumption-audit"] }
+    },
+    "A8": {
+      "level0": [],
+      "level1": { "step1": ["self-critique"],           "step2": [],                      "step3": [] },
+      "level2": { "step1": ["self-critique"],           "step2": ["rule-based-check"],    "step3": [] },
+      "level3": { "step1": ["self-critique"],           "step2": ["rule-based-check"],    "step3": ["source-verification"] },
+      "level4": { "step1": ["self-critique"],           "step2": ["rule-based-check"],    "step3": ["source-verification"] }
+    }
+  },
+  "overrides": {
+    "verificationObject": {
+      "none": {
+        "remove": ["source-verification", "citation-verification", "known-literature-test"],
+        "replaceWith": ["uncertainty-surfacing"]
+      }
+    },
+    "impact": {
+      "high": {
+        "forceStep3": {
+          "A5": "computational-check",
+          "A7": "claim-evidence-audit",
+          "A4": "rule-based-check"
+        }
+      }
+    }
+  },
+  "defaultPromptChoice": {
+    "A1": {
+      "step3": { "direct": "source-verification",   "partial": "source-verification",   "weak": "known-literature-test", "none": "uncertainty-surfacing" }
+    },
+    "A2": {
+      "step3": { "direct": "citation-verification", "partial": "citation-verification", "weak": "source-verification",   "none": "uncertainty-surfacing" }
+    },
+    "A3": {
+      "step3": { "direct": "convergence-check",     "partial": "convergence-check",     "weak": "known-literature-test", "none": "uncertainty-surfacing" }
+    },
+    "A5": {
+      "step3": { "direct": "computational-check",   "partial": "computational-check",   "weak": "rerunnability-check",   "none": "uncertainty-surfacing" }
+    }
+  }
+}

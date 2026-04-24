@@ -40,7 +40,7 @@ export default function FirstRunModal({ onDismiss }: Props) {
               </svg>
             </span>
             <span>
-              <strong>Risk-calibrated</strong>: checks match the stakes, not a one-size checklist
+              <strong>Risk-calibrated</strong>: checks match the stakes, not a one-size-fits-all checklist
             </span>
           </li>
           <li className="modal__bullet">

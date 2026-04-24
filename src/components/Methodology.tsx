@@ -66,11 +66,11 @@ const TASK_METHOD_ROWS: [string, string, string, string][] = [
 ];
 
 const LEVEL_TABLE_ROWS: [string, string, string, string][] = [
-  ["0", "Use freely", "No verification needed. Low-stakes, personal, generative output with no meaningful consequence if wrong.", "0"],
-  ["1", "Quick check", "One prompt from Step 1, chosen for your task type. Can help catch obvious errors before they travel further.", "1–2"],
-  ["2", "Grounded verification", "Two prompts: Step 1 and Step 2. Helps check both the surface output and underlying assumptions.", "3–5"],
-  ["3", "Independent review", "Three prompts across all steps. A task-specific method is prioritised at Step 3.", "6–7"],
-  ["4", "Formal control", "Full prompt suite plus mandatory human sign-off. Prompts are advisory; human judgement is the control.", "8+"],
+  ["0", "Use freely",            "No verification needed. Low-stakes, personal, generative output with no meaningful consequence if wrong.",                    "0"],
+  ["1", "Quick check",           "One prompt from Step 1, chosen for your task type. Can help catch obvious errors before they travel further.",               "1–2"],
+  ["2", "Grounded verification", "Two prompts: Step 1 and Step 2. Supports inspection of the output itself and the assumptions behind it.",                    "3–5"],
+  ["3", "Independent review",    "Three prompts across all steps. A task-specific method is prioritised at Step 3.",                                           "6–7"],
+  ["4", "Formal control",        "Full prompt suite plus mandatory human sign-off. Prompts are advisory; human judgement is the control.",                     "8+"],
 ];
 
 function ScoreTable({ title, rows }: { title: string; rows: [string, string][] }) {
@@ -108,9 +108,9 @@ export default function Methodology({ onOpenOther }: MethodologyProps) {
     <article className="methodology">
       <h1 className="methodology__title">How AVA works</h1>
 
-      <h2 className="methodology__heading">Verification proportional to use and risk; not uniform</h2>
+      <h2 className="methodology__heading">Verification should match use and risk, not be uniform</h2>
       <p className="methodology__body">
-        Most teams either over-verify low-stakes drafts or under-verify high-stakes outputs. AVA makes the right level of scrutiny obvious, quickly, without requiring expertise in AI safety or risk management.
+        Most teams either over-verify low-stakes drafts or under-verify high-stakes outputs. AVA helps you choose the right level of scrutiny quickly, without requiring expertise in AI safety or risk management.
       </p>
 
       <hr className="methodology__rule" aria-hidden="true" />
@@ -155,7 +155,7 @@ export default function Methodology({ onOpenOther }: MethodologyProps) {
         <div>
           <p className="methodology__principle-title">Actionable over educational</p>
           <p className="methodology__principle-desc">
-            AVA gives you the prompts to run, ready to copy. You do not need to read this page to use AVA effectively.
+            AVA gives you the prompts to run, ready to copy. You do not need to read this page to use AVA.
           </p>
         </div>
       </div>
@@ -179,13 +179,13 @@ export default function Methodology({ onOpenOther }: MethodologyProps) {
         Your verification level sets the depth. Your task type determines which prompts are most relevant at that depth.
       </p>
       <p className="methodology__body">
-        For each level, AVA selects one prompt per step from a fixed task-method table. At Step 1, the prompt is chosen to probe common failure modes for your task. At Step 2, a complementary probe is added. At Step 3, task determines the primary method; evidence determines which variant is used when alternatives exist.
+        For each level, AVA selects one prompt per step from a fixed task-method table. At Step 1, the prompt is chosen to probe common failure modes for your task. At Step 2, a complementary probe is added. At Step 3, task determines the primary method; evidence availability determines which variant is used when alternatives exist.
       </p>
       <p className="methodology__body">
-        Evidence availability shapes both the score and the method selection. The no-source adjustment (+2) raises your score. It also removes source-based prompts from the selection, replacing them with alternatives that work without one. These are two separate effects of the same input. Where a source would normally be expected, its absence is a stronger signal that method selection should avoid source-dependent prompts.
+        Evidence availability affects both the score and which methods are used. The no-source adjustment (+2) raises your score and removes source-based prompts from the selection, replacing them with alternatives that work without one. Where a source would normally be expected, its absence is a stronger signal to avoid source-dependent prompts.
       </p>
       <p className="methodology__body">
-        For tasks where prompt-based checks have inherent limits — code that needs running, calculations that need independent tools, policies that need legal review — treat the prompts as a starting point, not a substitute.
+        For tasks where prompt-based checks have inherent limits: code that needs running, calculations that need independent tools, policies that need legal review — treat the prompts as a starting point, not a substitute.
       </p>
 
       <h3 className="methodology__subheading methodology__subheading--tight">Task-method table</h3>
@@ -249,6 +249,10 @@ export default function Methodology({ onOpenOther }: MethodologyProps) {
       <h2 className="methodology__heading">Technical notes</h2>
       <p className="methodology__disclaimer methodology__disclaimer--flush">
         AVA is a deterministic decision aid. It runs entirely in your browser with no backend, no model calls, and no data storage. The recommendations come from a fixed scoring table and a task-method matrix. All selection rules are deterministic and fixed. AVA tells you how to verify; it does not verify for you. Human judgement remains essential at every level.
+      </p>
+
+      <p className="methodology__body">
+        Expertise improves how checks are applied, but does not replace the need for them.
       </p>
 
       <p className="methodology__body methodology__drawer-cross">

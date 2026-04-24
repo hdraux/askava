@@ -227,6 +227,119 @@ button.ava-header__brand {
   transform: none;
 }
 
+.ava-header__right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.ava-header__mode-switcher {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--surface-soft);
+  padding: 2px;
+}
+
+.ava-header__mode-btn {
+  padding: 4px 12px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease;
+  line-height: 1.5;
+}
+
+.ava-header__mode-btn:hover {
+  background: #e4e4e7;
+  color: var(--text);
+}
+
+.ava-header__mode-btn.is-active {
+  background: var(--surface);
+  color: var(--text);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.mode-switcher {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  width: 100%;
+  background: transparent;
+  isolation: isolate;
+}
+
+.mode-switcher__tabs {
+  display: flex;
+  gap: 0;
+  align-items: center;
+}
+
+.mode-switcher__tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: color 120ms ease, border-color 120ms ease;
+  margin-bottom: -1px;
+  line-height: 1.4;
+}
+
+.mode-switcher__tab:hover {
+  color: var(--text);
+}
+
+.mode-switcher__tab.is-active {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.mode-switcher__tab svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  color: inherit;
+}
+
+.mode-switcher__tab.is-active svg {
+  color: var(--text);
+}
+
+.mode-switcher__restart {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin-right: 24px;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--text-muted);
+  cursor: pointer;
+  transition: color 120ms ease, background 120ms ease;
+}
+
+.mode-switcher__restart:hover {
+  color: var(--text);
+  background: var(--surface-soft);
+}
+
 /* UNUSED? Stepper: .stepper / .stepper__* were only used by deleted Stepper.tsx; responsive rules still reference .stepper below. */
 
 /* ── Stepper ────────────────────────────────────────────────────────────── */
@@ -1316,24 +1429,75 @@ summary {
   padding: 13px 15px;
 }
 
-.prompt-card__actions {
+.prompt-card__variant-label {
+  margin: 0 0 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-text-muted, var(--text-muted));
+}
+
+.prompt-card__variant-switcher {
   display: flex;
-  justify-content: flex-end;
-  margin-bottom: 8px;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 0 0 8px;
+}
+
+.prompt-card__variant-btn {
+  border: 1px solid var(--color-border, var(--border));
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.35;
+  min-height: auto;
+  background: var(--surface);
+  color: var(--color-text-muted, var(--text-hint));
+}
+
+.prompt-card__variant-btn:hover {
+  border-color: var(--green);
+  background: var(--green-light);
+  color: var(--green);
+  transform: none;
+}
+
+.prompt-card__variant-btn.is-active {
+  background: var(--green-light);
+  border-color: rgba(45, 74, 62, 0.28);
+  color: var(--green);
+}
+
+.prompt-card__why-here {
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  color: var(--color-text-muted, var(--text-muted));
+  font-style: italic;
+}
+
+.prompt-card__text-wrap {
+  position: relative;
+  background: #F2F7F4;
+  border: 1px solid #C8DDD2;
+  border-radius: var(--radius-sm);
+  margin: 0 0 10px;
 }
 
 .prompt-card__text {
   font-family: "SF Mono", "Fira Code", ui-monospace, Menlo, monospace;
   font-size: 0.8rem;
   color: #2D4A3E;
-  background: #F2F7F4;
-  border: 1px solid #C8DDD2;
-  border-radius: var(--radius-sm);
-  padding: 12px 14px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 44px 14px 12px;
   line-height: 1.8;
   white-space: pre-wrap;
   word-break: break-word;
-  margin: 0 0 10px;
+  margin: 0;
   overflow-x: auto;
 }
 
@@ -1353,14 +1517,74 @@ summary {
 }
 
 .prompt-card__copy {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 1;
   display: inline-flex;
+  justify-content: center;
   align-items: center;
-  gap: 5px;
-  min-width: auto;
-  padding: 6px 12px;
-  font-size: 0.83rem;
+  gap: 6px;
+  width: auto;
+  height: auto;
+  padding: 5px 11px;
+  border-radius: 6px;
+  border: none;
+  min-height: 28px;
+  min-width: 0;
+  background: transparent;
+  color: var(--text-hint);
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.2;
   white-space: nowrap;
+}
+
+.prompt-card__copy svg {
   flex-shrink: 0;
+}
+
+.prompt-card__copy:hover {
+  background: rgba(45, 74, 62, 0.1);
+  color: var(--green);
+  transform: none;
+}
+
+.prompt-card__copy:focus-visible {
+  box-shadow: var(--focus-ring);
+}
+
+.reveal-wizard__human-action {
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  border-left: 3px solid var(--lvl-3-fg);
+  background: var(--lvl-3-bg);
+  border-radius: 0 4px 4px 0;
+}
+
+.reveal-wizard__human-action-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--lvl-3-fg);
+  margin: 0 0 0.25rem;
+}
+
+.reveal-wizard__human-action-text {
+  font-size: 0.875rem;
+  color: var(--text);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.reveal-wizard__result:has(.level--red) .reveal-wizard__human-action {
+  border-left-color: var(--lvl-4-fg);
+  background: var(--lvl-4-bg);
+}
+
+.reveal-wizard__result:has(.level--red) .reveal-wizard__human-action-label {
+  color: var(--lvl-4-fg);
 }
 
 /* UNUSED? Result screen: all .result-screen__* rules only matched deleted ResultScreen.tsx (including .result-screen__step-num / __switch-* / __model-* which were never referenced in that file). */
@@ -2097,6 +2321,12 @@ summary {
   border-radius: 4px;
 }
 
+.reveal-wizard__domain-nudge {
+  margin-top: 0.75rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--border);
+}
+
 /* Responsive */
 @media (max-width: 700px) {
   .reveal-wizard__timeline { width: 32px; }
@@ -2158,3 +2388,4 @@ summary {
   fill: none;
   color: inherit;
 }
+

@@ -1,0 +1,46 @@
+{
+  "levels": [
+    {
+      "level": 0,
+      "explanation": "No verification needed for this output at this stage.",
+      "checklist": []
+    },
+    {
+      "level": 1,
+      "explanation": "A light self-check is typically proportionate before using this.",
+      "checklist": [
+        "Review the output for obvious errors or gaps",
+        "Check that claims are consistent with your existing knowledge"
+      ]
+    },
+    {
+      "level": 2,
+      "explanation": "Read carefully and check key claims before using.",
+      "checklist": [
+        "Run the prompts below as part of your checks",
+        "Spot-check key claims against available sources",
+        "Apply your domain knowledge to identify anything that looks unusual or uncertain"
+      ]
+    },
+    {
+      "level": 3,
+      "explanation": "Work through the steps below before acting on this output.",
+      "checklist": [
+        "Use the prompts below to support your inspection, then verify independently",
+        "Check key claims against primary sources",
+        "Have a domain expert review before external use",
+        "Document what you checked and what you found"
+      ]
+    },
+    {
+      "level": 4,
+      "explanation": "Do not share or act on this without formal human sign-off and a documented review.",
+      "checklist": [
+        "Use the prompts below to support your review — they do not replace expert sign-off",
+        "Obtain sign-off from a qualified domain expert",
+        "Verify all claims against primary sources",
+        "Document the review process and who approved it"
+      ]
+    }
+  ]
+}

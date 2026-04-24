@@ -1,0 +1,20 @@
+{
+  "triggers": [
+    {
+      "id": "manuscript_draft_minimum",
+      "condition": { "stage": ["S4"] },
+      "minimumLevel": 3
+    },
+    {
+      "id": "submission_minimum",
+      "condition": { "stage": ["S5"] },
+      "minimumLevel": 4,
+      "escalationNotice": "This output is going to submission or publication. It requires sign-off from a qualified human expert before use. Running these prompts does not substitute for that review."
+    },
+    {
+      "id": "high_impact_no_source_minimum",
+      "condition": { "impact": ["I3"], "verificationObject": ["V4"] },
+      "minimumLevel": 3
+    }
+  ]
+}
