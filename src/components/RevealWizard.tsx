@@ -514,7 +514,7 @@ export default function RevealWizard({ mode = "general" }: RevealWizardProps) {
                     <p className="reveal-wizard__prompts-note reveal-wizard__domain-nudge">
                       {level <= 2
                         ? "Use your domain expertise to apply these checks. It doesn't replace them."
-                        : "Expert review should focus on edge cases, assumptions, and failure modes. Treat the output as unverified until checked."}
+                        : "."}
                     </p>
                   )}
 
